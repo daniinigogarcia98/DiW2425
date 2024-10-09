@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+}
+
+header{
+    position: relative;
+    background-color:gray;
+    padding: 20px;
+    color: white;
+    width: 100%;
+    
+}
+.div1{
+    position: absolute;
+    background-color: aqua;
+    padding: 20px;
+    width: 10%;
+}
+.div2{
+    float: left;
+    background-color: aqua;
+    padding: 20px;
+    width: 10%;
+}
+.div3{
+    float: left;
+    background-color: aqua;
+    padding: 20px;
+    width: 10%;
+}
+.div4{
+    float: left;
+    background-color: aqua;
+    padding: 20px;
+    width: 10%;
+}
+
+footer{
+    background-color: gray;
+    padding: 20px;
+    color: white;
+}

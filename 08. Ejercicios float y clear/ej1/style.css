@@ -1,0 +1,14 @@
+div{
+    float: right;
+    padding: 55px;
+}
+.div1 {
+
+    background: lightpink;
+   
+  }
+  
+  .div2 {
+    float: left;
+    background: aqua;
+  }

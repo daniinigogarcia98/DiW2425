@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+}
+
+.img1{
+    float: left;
+    width: 250px;
+ 
+}
+
+.img2{
+  
+    float: left;
+    width: 250px;
+   
+}
+.img3{
+    float:left ;
+    width: 250px;
+ 
+
+}
+.titulo{
+
+    clear:both;
+    width: 40%;
+    padding:20px;
+    float: left;
+    background-color: gray;
+}
+
+.parrafo{
+    
+    float: right;
+
+}

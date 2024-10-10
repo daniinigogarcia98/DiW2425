@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+.menu a:hover {
+    color: #eee;
+    background-color: red;
+    padding: 10px;
+
+}
+
+.menu a {
+    color: #eee;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.contenedor {
+    background-color: black;
+    padding: 10px;
+}
+
+.menu {
+    display: flex;
+}
+.left {
+    float: left;
+}
+
+.right {
+    display: flex;
+    float: right;
+}

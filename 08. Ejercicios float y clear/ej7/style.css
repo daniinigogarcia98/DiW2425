@@ -12,32 +12,16 @@ header{
     width: 100%;
     
 }
-.div1{
-    position: absolute;
-    background-color: aqua;
-    padding: 20px;
-    width: 10%;
-}
-.div2{
+.column{
     float: left;
     background-color: aqua;
+    width:30%;
     padding: 20px;
-    width: 10%;
-}
-.div3{
-    float: left;
-    background-color: aqua;
-    padding: 20px;
-    width: 10%;
-}
-.div4{
-    float: left;
-    background-color: aqua;
-    padding: 20px;
-    width: 10%;
 }
 
+
 footer{
+    clear: both;
     background-color: gray;
     padding: 20px;
     color: white;

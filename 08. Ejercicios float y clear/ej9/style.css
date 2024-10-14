@@ -1,37 +1,27 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+nav {
+    background-color: #333;
   }
-  
-.menu a:hover {
-    color: #eee;
-    background-color: red;
-    padding: 10px;
 
-}
-
-.menu a {
-    color: #eee;
+  nav a {
+    padding: 14px 18px;
+    color: white;
     text-decoration: none;
-    padding: 10px;
-    font-weight: bold;
-    margin: 10px;
-}
+  }
 
-.contenedor {
-    background-color: black;
-    padding: 10px;
-}
+  nav a:hover {
+    background-color: red;
+  }
 
-.menu {
-    display: flex;
-}
-.left {
+  .f-left {
     float: left;
-}
+  }
 
-.right {
-    display: flex;
+  .f-right {
     float: right;
-}
+  }
+
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

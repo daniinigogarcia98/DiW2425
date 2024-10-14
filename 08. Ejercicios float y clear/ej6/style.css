@@ -1,19 +1,16 @@
-div {
-  padding: 5px;
-  }
-  
-  
-  
-  .img {
-    
-    float: left;
-  }
-  
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display:flex;
-  }
-  .text{
-    float: left;
-  }
+img {
+  width: 20%;
+}
+
+.texto {
+  float: right;
+  background-color: aqua;
+  width: 80%;
+  padding: 0px 15px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

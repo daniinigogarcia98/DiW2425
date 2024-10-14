@@ -1,38 +1,35 @@
-*{
-    box-sizing: border-box;
-    margin-bottom: 20px;
-
-}
-
-.img1{
+.img-container {
     float: left;
-    width: 250px;
- 
-}
+    width: 33.33%;
+    padding: 5px;
+  }
 
-.img2{
-  
-    float: left;
-    width: 250px;
-   
-}
-.img3{
-    float:left ;
-    width: 250px;
- 
+  .img-container img {
+    width: 100%;
+  }
 
-}
-footer{
+  .titulo_imagen {
+    text-align: center;
+    font-weight: bold;
+  }
 
-    clear:both;
-    width: 40%;
-    padding:20px;
-    float: left;
+  #footer {
     background-color: gray;
-}
+    margin-top: 20px;
+    padding: 20px;
+    font-weight: bold;
+  }
 
-.parrafo{
-    
+  .f-right {
     float: right;
+  }
 
-}
+  .f-left {
+    float: left;
+  }
+
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

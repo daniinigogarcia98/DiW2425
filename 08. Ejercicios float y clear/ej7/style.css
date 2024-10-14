@@ -1,28 +1,38 @@
-*{
-    box-sizing: border-box;
-    margin-bottom: 20px;
-
+.header,
+.footer {
+  background-color: grey;
+  color: white;
+  padding: 15px;
 }
 
-header{
-    position: relative;
-    background-color:gray;
-    padding: 20px;
-    color: white;
-    width: 100%;
-    
-}
-.column{
-    float: left;
-    background-color: aqua;
-    width:30%;
-    padding: 20px;
+.column {
+  float: left;
+  padding: 15px;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
-footer{
-    clear: both;
-    background-color: gray;
-    padding: 20px;
-    color: white;
+.menu {
+  width: 25%;
+}
+
+.content {
+  width: 75%;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: #33b5e5;
+  color: #ffffff;
 }

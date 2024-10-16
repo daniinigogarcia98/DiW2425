@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 p.def {
   font-size: 16pt;
 }

@@ -1,4 +1,14 @@
-* {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Float vs Position</title>
+</head>
+<style>
+  * {
     box-sizing: border-box;
   }
 
@@ -15,7 +25,7 @@
 
   .container-position {
     background-color: lightcoral;
-    padding: 40px;
+    padding: 20px;
     position: relative;
   }
 
@@ -32,3 +42,18 @@
     clear: both;
     display: table;
   }
+</style>
+
+<body>
+
+  <div class="container-float clearfix">
+    <span>Con float</span>
+  </div>
+
+  <div class="container-position">
+    <span>Con position</span>
+  </div>
+
+</body>
+
+</html>

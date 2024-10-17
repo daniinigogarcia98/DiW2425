@@ -117,18 +117,16 @@
   }
   
   .sidebar {
-    width: 150px;
+    width: 100%;
     height: 300px;
     background: #FFBE56;
   }
-
+  
   .main-content {
     width: 100%;
     background: #88ABC2;
     color: #fff;
   }
-
-
   .sub-content {
     background: #49708a;
     height: 140px;
@@ -141,7 +139,6 @@
   }
 
   .footer {
-    float: left;
     width: 100%;
     background: #AAD637;
   }
@@ -171,4 +168,5 @@
     text-align: center;
     padding-top: 75px;
   }
+
  

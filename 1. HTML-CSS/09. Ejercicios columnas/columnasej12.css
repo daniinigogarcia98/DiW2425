@@ -61,7 +61,16 @@
   .col-12 {
     width: 100%;
   }
-  h1, h2, h3, h4, h5, div {
+  * {
+    box-sizing: border-box;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  div {
     text-transform: uppercase;
     font-weight: bold;
   }
@@ -71,13 +80,15 @@
     font-weight: normal;
   }
   
-  a, a:active, a:visited {
+  a,
+  a:active,
+  a:visited {
     text-decoration: none;
-    color: #88ABC2;
+    color: #88abc2;
   }
   
   a:hover {
-    color: #FFBE56;
+    color: #ffbe56;
   }
   
   .example {
@@ -89,81 +100,78 @@
   }
   
   div {
-    box-sizing: border-box;
     padding: 20px;
   }
   
   .container {
-    background: #EBF7F8;
+    width: 100%;
     margin: 0 auto;
+    background: #ebf7f8;
   }
+  
   .container.index {
     width: 80%;
     margin: 0 auto;
   }
-
+  
   .header {
-    width: 100%;
-    background: #FF9C56;
+    background: #ff9c56;
   }
   
   .logo {
-    float: right;
-    background: #FF4D79;
+    background: #ff4d79;
   }
+  
   .navigation {
-    float: left;
-    background: #E85F43;
+    background: #e85f43;
   }
   
   .sidebar {
-    width: 150px;
+    width: 33.3333%;
     height: 300px;
-    background: #FFBE56;
+    background: #ffbe56;
   }
-
+  
   .main-content {
-    width: 100%;
-    background: #88ABC2;
+    width: 33.3333%;
+    height: 300px;
+    background: #88abc2;
     color: #fff;
   }
-
-
+  
   .sub-content {
+    width: 33.3333%;
+    height: 300px;
     background: #49708a;
-    height: 140px;
-    margin-bottom: 20px;
   }
-
+  
   .sub-content-2 {
     background: #355163;
-    height: 140px;
-  }
-
-  .footer {
-    float: left;
-    width: 100%;
-    background: #AAD637;
   }
   
+  .footer {
+    background: #aad637;
+  }
   
   .post {
-    background: #AAD637;
+    background: #aad637;
     margin-bottom: 20px;
   }
   
   .image {
-    background: #8EB22E;
+    background: #8eb22e;
   }
   
   .post_excerpt {
-    background: #708C24;
+    background: #708c24;
     padding: 20px;
     margin: 0;
   }
-  
+  .main {
+    padding: 0;
+  }
   .widget {
-    background: #BB326B;
+    background: #bb326b;
     margin: 10px;
     width: 200px;
     height: 200px;
@@ -171,4 +179,5 @@
     text-align: center;
     padding-top: 75px;
   }
- 
+  
+  

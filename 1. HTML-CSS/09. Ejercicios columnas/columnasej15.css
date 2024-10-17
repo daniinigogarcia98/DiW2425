@@ -1,0 +1,179 @@
+/* CSS destinado a describir las columnas */
+* {
+    box-sizing: border-box;
+  }
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  [class*="col-"] {
+    float: left;
+    padding: 15px;
+  }
+  
+  .col-1 {
+    width: 8.33%;
+  }
+  
+  .col-2 {
+    width: 16.66%;
+  }
+  
+  .col-3 {
+    width: 25%;
+  }
+  
+  .col-4 {
+    width: 33.33%;
+  }
+  
+  .col-5 {
+    width: 41.66%;
+  }
+  
+  .col-6 {
+    width: 50%;
+  }
+  
+  .col-7 {
+    width: 58.33%;
+  }
+  
+  .col-8 {
+    width: 66.66%;
+  }
+  
+  .col-9 {
+    width: 75%;
+  }
+  
+  .col-10 {
+    width: 83.33%;
+  }
+  
+  .col-11 {
+    width: 91.66%;
+  }
+  
+  .col-12 {
+    width: 100%;
+  }
+   
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  div {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  p {
+    text-transform: none;
+    font-weight: normal;
+  }
+  
+  a,
+  a:active,
+  a:visited {
+    text-decoration: none;
+    color: #88abc2;
+  }
+  
+  a:hover {
+    color: #ffbe56;
+  }
+  
+  .example {
+    margin-bottom: 60px;
+  }
+  
+  .example img {
+    max-width: 80%;
+  }
+  
+  div {
+    padding: 20px;
+  }
+  
+  .container {
+    background: #ebf7f8;
+  }
+  
+  .container.index {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .header {
+    background: #ff9c56;
+  }
+  
+  .logo {
+    float: left;
+    background: #ff4d79;
+  }
+  
+  .navigation {
+    float: right;
+    background: #e85f43;
+  }
+  
+  .sidebar {
+    background: #ffbe56;
+  }
+  
+  .main-content {
+    background: #88abc2;
+    color: #fff;
+  }
+  
+  .sub-content {
+    background: #49708a;
+  }
+  
+  .sub-content-2 {
+    background: #355163;
+  }
+  
+  .footer {
+    background: #aad637;
+  }
+  
+  .post {
+    background: #aad637;
+    margin-bottom: 20px;
+  }
+  
+  .image {
+    float: left;
+    width: 20%;
+    height: 150px;
+    background: #8eb22e;
+  }
+  
+  .post_excerpt {
+    float: right;
+    width: 70%;
+    background: #708c24;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  .widget {
+    background: #bb326b;
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+    font-size: 36px;
+    text-align: center;
+    padding-top: 75px;
+  }
+  .post-content {
+    padding: 0;
+  }
+  

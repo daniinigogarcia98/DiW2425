@@ -1,0 +1,52 @@
+/* Crea un layout adaptativo donde los breakpoints son a 600px y 992px */
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.col-3 {
+  width: 50%;
+  float: left;
+  background-color: lightslategray;
+  height: 100px;
+}
+
+.col-6 {
+  width: 50%;
+  float: left;
+  background-color: lightgrey;
+  height: 100px;
+}
+
+/* Media query para dispositivos de tamaño móvil */
+@media (max-width: 600px) {
+  .col-3 {
+    width: 100%;
+    background-color: gray;
+    height: 100px;
+  }
+  .col-6 {
+    width: 100%;
+    background-color: lightgray;
+    height: 100px;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-3 {
+    width: 20%;
+    background-color: lightcoral;
+    height: 100px;
+  }
+  .col-6 {
+    width: 20%;
+    background-color: lightseagreen;
+    height: 100px;
+  }
+}

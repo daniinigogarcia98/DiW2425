@@ -1,0 +1,35 @@
+/* Color de fondo para pantallas de 800px o mayor */
+body {
+    background-color: pink;
+  }
+  .text{
+    text-decoration: underline;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+  }
+  /* Color de fondo para pantallas entre 400px y 799px */
+  @media (max-width: 799px) and (min-width: 400px) {
+    body {
+      background-color: lightgreen;
+    }
+    .text{
+        text-decoration: underline;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: red;
+      }
+  }
+  
+  /* Color de fondo para pantallas menores a 400px */
+  @media (max-width: 399px) {
+    body {
+      background-color: lightblue;
+    }
+    .text{
+        text-decoration: underline;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: red;
+      }
+  }

@@ -1,0 +1,12 @@
+@media (width > 600px) {
+  h2 {
+    background-color: yellow;
+    color: red;
+  }
+}
+
+@media (width < 600px) {
+  h2 {
+    visibility: hidden;
+  }
+}

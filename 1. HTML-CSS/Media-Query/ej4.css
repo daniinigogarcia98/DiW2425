@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar li {
+  flex: 1;
+}
+
+.navbar a {
+  display: block;
+  padding: 14px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #575757;
+}
+
+/* Estilos para pantallas menores a 600px */
+@media (max-width: 600px) {
+  .navbar ul {
+    flex-direction: column;
+  }
+}

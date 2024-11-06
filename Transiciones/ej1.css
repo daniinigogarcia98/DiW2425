@@ -1,0 +1,14 @@
+.contenedor {
+  width: 100px;
+  height: 100px;
+  background-color: yellowgreen;
+  transition-property: height, width;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0.5s;
+}
+
+.contenedor:hover {
+  height: 300px;
+  width: 300px;
+}

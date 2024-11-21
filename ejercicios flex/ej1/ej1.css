@@ -1,0 +1,17 @@
+.caja-principal {
+    background-color: lightgray;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .caja-principal .item {
+    border: 1px solid black;
+    background-color: yellow;
+    padding: 30px;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  

@@ -1,0 +1,43 @@
+:root {
+    --initial-size: 100px;
+  }
+  body {
+    height: 100vh;
+    background-color: black;
+  }
+  .div-animado {
+    width: var(--initial-size);
+    height: var(--initial-size);
+    background-color: blue;
+    animation: animacion 3s linear infinite;
+    box-shadow: 10px 10px 10px cyan;
+  }
+  
+  @keyframes animacion {
+    0% {
+      width: var(--initial-size);
+      height: var(--initial-size);
+      background-color: red;
+    }
+    33% {
+      width: calc(var(--initial-size) * 2);
+      height: var(--initial-size);
+      background-color: blue;
+    }
+    66% {
+      width: calc(var(--initial-size) * 2);
+      height: calc(var(--initial-size) * 2);
+        background-color: green;
+    }
+    82.5% {
+      width: var(--initial-size);
+      height: calc(var(--initial-size) * 2);
+      background-color: purple;
+    }
+    100% {
+      width: var(--initial-size);
+      height: var(--initial-size);
+      background-color: limegreen;
+    }
+  }
+  

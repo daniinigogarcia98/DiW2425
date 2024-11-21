@@ -1,0 +1,31 @@
+.boton-dinamico {
+    padding: 0.5em 1em;
+    background-color: rgb(20, 49, 214);
+    color: black;
+    border: 2px solid rgb(20, 49, 214);
+    cursor: pointer;
+    font-size: 4rem;
+  }
+  
+  .boton-dinamico:hover {
+    animation: boton-dinamico 2s forwards;
+  }
+  
+  @keyframes boton-dinamico {
+  10% {
+      font-size: 6rem;
+      background-color: yellowgreen;
+      color: black;            
+    }
+    55% {
+      background-color: white;
+      color: green;
+      font-size: 6rem; 
+    }
+    100% {
+      background-color: rgb(212, 123, 123);
+      color: black;
+      font-size: 6rem; 
+    }
+  }
+  

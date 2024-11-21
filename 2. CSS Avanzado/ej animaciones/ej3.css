@@ -1,0 +1,40 @@
+.div-animado {
+    width: 100px;
+    height: 100px;
+    background-color: yellowgreen;
+    animation: animacion 3s linear infinite;
+    box-shadow: 10px 10px 10px cyan;
+  }
+  body {
+    height: 100vh;
+    background-color: black;
+  }
+  
+  @keyframes animacion {
+    0% {
+      width: 100px; 
+      height: 100px;
+      background-color: red;
+    }
+    33% {
+      width: 200px;
+      height: 100px;
+      background-color: blue;
+    }
+    66% {
+      width: 200px;
+      height: 200px;
+      background-color: green;
+    }
+    82.5% {
+      width: 100px;
+      height: 200px;
+      background-color: purple;
+    }
+    100% {
+      width: 100px; 
+      height: 100px; 
+      background-color: limegreen;
+    }
+  }
+  

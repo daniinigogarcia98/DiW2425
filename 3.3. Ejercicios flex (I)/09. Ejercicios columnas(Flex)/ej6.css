@@ -1,0 +1,17 @@
+#container {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  img {
+    width: 200px;
+  }
+  
+  .divtexto {
+    padding: 0px 15px;
+    background-color: aqua;
+  }

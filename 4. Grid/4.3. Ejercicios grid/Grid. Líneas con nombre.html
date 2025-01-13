@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid. Líneas con nombre</title>
+    <style>
+       body {
+  background-color: #f4f4f9;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: [inicio-filas-sm] 1fr [fila2-sm] 1fr [fila3-sm] 1fr [fila4-sm] auto [fila3-sm] auto [fin-filas-sm];
+  grid-template-columns: [inicio-columnas-sm] 1fr [columna2-sm] 1fr [columna3-sm] 1fr [columna4-sm] 1fr [fin-columnas-sm];
+  gap: 10px;
+  max-width: 800px;
+  height: 400px;
+  background-color: #ffffff;
+  border: 2px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.gitem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid #0056b3;
+  border-radius: 5px;
+}
+
+.gitem:nth-child(1) {
+  grid-row: inicio-filas-sm / fila2-sm;
+  grid-column: inicio-columnas-sm / columna2-sm;
+}
+
+.gitem:nth-child(2) {
+  grid-row: fila2-sm / fila3-sm;
+  grid-column: columna2-sm / fin-columnas-sm;
+}
+
+.gitem:nth-child(3) {
+  grid-row: inicio-filas-sm / fila2-sm;
+  grid-column: columna2-sm / columna3-sm;
+}
+
+.gitem:nth-child(4),
+.gitem:nth-child(5),
+.gitem:nth-child(6) {
+  grid-row: auto;
+  grid-column: inicio-columnas-sm / fin-columnas-sm;
+}
+
+/* Media query para pantallas mayores a 600px */
+@media (min-width: 600px) {
+  .container {
+    grid-template-rows: [inicio-filas-xl] 1fr [fila2-xl] 1fr [fila3-xl] auto [fila4-xl] 1fr [fila5-xl] 2fr [fin-filas-xl];
+    grid-template-columns: [inicio-columnas-xl] 1fr [columna2-xl] 1fr [fin-columnas-xl];
+  }
+
+  .gitem:nth-child(1) {
+    grid-row: inicio-filas-xl / fila2-xl;
+    grid-column: inicio-columnas-xl / fin-columnas-xl;
+  }
+
+  .gitem:nth-child(2) {
+    grid-row: fila2-xl / fila4-xl;
+    grid-column: inicio-columnas-xl / columna2-xl;
+  }
+
+  .gitem:nth-child(3) {
+    grid-row: fila2-xl / fila3-xl;
+    grid-column: columna2-xl / fin-columnas-xl;
+  }
+
+  .gitem:nth-child(4) {
+    grid-row: fila4-xl / fila5-xl;
+    grid-column: columna2-xl / fin-columnas-xl;
+  }
+
+  .gitem:nth-child(5) {
+    grid-row: fila3-xl / fila4-xl;
+    grid-column: columna2-xl / fin-columnas-xl;
+  }
+
+  .gitem:nth-child(6) {
+    grid-row: fila5-xl / fin-filas-xl;
+    grid-column: inicio-columnas-xl / fin-columnas-xl;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gitem">1</div>
+        <div class="gitem">2</div>
+        <div class="gitem">3</div>
+        <div class="gitem">4</div>
+        <div class="gitem">5</div>
+        <div class="gitem">6</div>
+      </div>
+    
+</body>
+</html>

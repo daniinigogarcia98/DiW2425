@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora con Grid</title>
+  <style>
+    #contenedor-general {
+      width: fit-content;
+      margin: 0 auto;
+      border: 1px solid black;
+      padding: 20px;
+      background-color: rgb(234, 234, 234);
+    }
+
+    .contenedor-opciones {
+      display: grid;
+      gap: 5px;
+      grid-template-columns: repeat(6, 98px);
+      margin-bottom: 10px;
+      grid-template-areas: 
+        "mc mr mplus mminus ms m";
+    }
+
+    .contenedor-calculadora {
+      display: grid;
+      gap: 5px;
+      grid-template-areas: 
+        "percent ce c leftarrow"
+        "inverse square root divide"
+        "seven eight nine multiply"
+        "four five six minus"
+        "one two three plus"
+        "plusminus zero comma equal";
+    }
+
+    .item {
+      text-align: center;
+      border-radius: 5px;
+      background-color: white;
+      border: 1px solid rgb(196, 196, 196);
+      padding: 5px 15px;
+    }
+
+    .item:hover {
+      background-color: rgb(196, 196, 196);
+    }
+
+    .contenedor-opciones .item:nth-child(1) {
+      grid-area: mc;
+    }
+    .contenedor-opciones .item:nth-child(2) {
+      grid-area: mr;
+    }
+    .contenedor-opciones .item:nth-child(3) {
+      grid-area: mplus;
+    }
+    .contenedor-opciones .item:nth-child(4) {
+      grid-area: mminus;
+    }
+    .contenedor-opciones .item:nth-child(5) {
+      grid-area: ms;
+    }
+    .contenedor-opciones .item:nth-child(6) {
+      grid-area: m;
+    }
+
+    .contenedor-calculadora .item:nth-child(1) {
+      grid-area: percent;
+    }
+    .contenedor-calculadora .item:nth-child(2) {
+      grid-area: ce;
+    }
+    .contenedor-calculadora .item:nth-child(3) {
+      grid-area: c;
+    }
+    .contenedor-calculadora .item:nth-child(4) {
+      grid-area: leftarrow;
+    }
+    .contenedor-calculadora .item:nth-child(5) {
+      grid-area: inverse;
+    }
+    .contenedor-calculadora .item:nth-child(6) {
+      grid-area: square;
+    }
+    .contenedor-calculadora .item:nth-child(7) {
+      grid-area: root;
+    }
+    .contenedor-calculadora .item:nth-child(8) {
+      grid-area: divide;
+    }
+    .contenedor-calculadora .item:nth-child(9) {
+      grid-area: seven;
+    }
+    .contenedor-calculadora .item:nth-child(10) {
+      grid-area: eight;
+    }
+    .contenedor-calculadora .item:nth-child(11) {
+      grid-area: nine;
+    }
+    .contenedor-calculadora .item:nth-child(12) {
+      grid-area: multiply;
+    }
+    .contenedor-calculadora .item:nth-child(13) {
+      grid-area: four;
+    }
+    .contenedor-calculadora .item:nth-child(14) {
+      grid-area: five;
+    }
+    .contenedor-calculadora .item:nth-child(15) {
+      grid-area: six;
+    }
+    .contenedor-calculadora .item:nth-child(16) {
+      grid-area: minus;
+    }
+    .contenedor-calculadora .item:nth-child(17) {
+      grid-area: one;
+    }
+    .contenedor-calculadora .item:nth-child(18) {
+      grid-area: two;
+    }
+    .contenedor-calculadora .item:nth-child(19) {
+      grid-area: three;
+    }
+    .contenedor-calculadora .item:nth-child(20) {
+      grid-area: plus;
+    }
+    .contenedor-calculadora .item:nth-child(21) {
+      grid-area: plusminus;
+    }
+    .contenedor-calculadora .item:nth-child(22) {
+      grid-area: zero;
+    }
+    .contenedor-calculadora .item:nth-child(23) {
+      grid-area: comma;
+    }
+    .contenedor-calculadora .item:nth-child(24) {
+      grid-area: equal;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="contenedor-general">
+    <div class="contenedor-opciones">
+      <div class="item">MC</div>
+      <div class="item">MR</div>
+      <div class="item">M+</div>
+      <div class="item">M-</div>
+      <div class="item">MS</div>
+      <div class="item">M</div>
+    </div>
+
+    <div class="contenedor-calculadora">
+      <div class="item">%</div>
+      <div class="item">CE</div>
+      <div class="item">C</div>
+      <div class="item">&lArr;</div>
+      <div class="item">1/X</div>
+      <div class="item">x2</div>
+      <div class="item">&#8730;2</div>
+      <div class="item">/</div>
+      <div class="item">7</div>
+      <div class="item">8</div>
+      <div class="item">9</div>
+      <div class="item">x</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">-</div>
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">+</div>
+      <div class="item">+/-</div>
+      <div class="item">0</div>
+      <div class="item">,</div>
+      <div class="item">=</div>
+    </div>
+  </div>
+</body>
+
+</html>

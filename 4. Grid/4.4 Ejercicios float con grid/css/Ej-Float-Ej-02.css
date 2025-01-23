@@ -1,0 +1,26 @@
+#container {
+  display: grid; 
+  grid-template-columns: 0fr 0fr 10fr;
+  grid-template-rows: 1fr 1fr;
+  place-items:end;
+}
+
+.div1 {
+  padding: 50px;
+  background-color: pink;
+  order:1;
+ 
+}
+
+.div2 {
+  padding: 50px;
+  background-color: aqua;
+}
+
+.div3 {
+  padding: 50px;
+  background-color: coral;
+  gap: 100px;
+  
+}
+

@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="js/jquery-3.7.1.min.js"></script>
     <title>Pruebas De jQuery</title>
-</head>
-<body>
-    <div class="container">
-        <p>Hola jQuery</p>
-        <script>
-            $(document).ready(function () {
-                
-            });
-            $(function () {
-               $("p").css("color", "red");
-               $("p").css("font-size", "20px");
-               $("p").css("font-weight", "bold");
-               $("p").css("text-align", "center");
-               $("p").css("background-color", "yellow");
-               $("p").css("border", "1px solid black");
-               $("p").css("padding", "10px");
-                $("p").css("margin", "10px");
-                $("p").css("border-radius", "10px");
-            });
-        </script>
-    </div>
-</body>
+  </head>
+  <body>
+    <input type="text" id="textbox" />
+
+    <script>
+      $(document).ready(function () {
+        $("#textbox").on("keydown", function () {
+          console.log("keydown event");
+        });
+        $("#textbox").on("keyup", function () {
+          console.log("keyup event");
+        });
+
+        
+      });
+    </script>
+  </body>
 </html>

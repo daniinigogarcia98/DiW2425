@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicios jQuery (I)</title>
+    <script src="jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <style>
+        .highlight {
+          background-color: yellow;
+        }
+        .hidden {
+          display: none;
+        }
+      </style>
+
+      <h1 id="main-title">Título principal</h1>
+      <p id="description" class="hidden">
+        Este es un párrafo con una clase oculta.
+      </p>
+      <button id="toggle-class">Cambiar clase</button>
+      <input id="input-field" type="text" value="Texto inicial" />
+      <a id="link" href="https://example.com">Ir a Example</a>
+      <button id="submit-button" disabled>Enviar</button>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // Ejercicio 1
+        //   $('#toggle-class').click(function() {
+        //     $('#main-title').addClass('highlight');
+        //   });
+        // Ejercicio 2
+        // $('#link').attr('href', 'https://google.com');
+        // Ejercicio 3
+        // $('#toggle-class').click(function() {
+        //     if ($('#description').hasClass('hidden')) {
+        //         $('#description').removeClass('hidden');
+        //     } else {
+        //         $('#description').addClass('hidden');
+        //     }
+        // if ($("#description").hasClass("hidden")) {
+        //   console.log("El párrafo tiene la clase 'hidden'.");
+        // } else {
+        //   console.log("El párrafo no tiene la clase 'hidden'.");
+        // }
+        // });
+        // Ejercicio 4
+        // $('#toggle-class').click(function() {
+        //     $('#main-title').html('¡Título actualizado con jQuery!');
+        // });
+        // Ejercicio 5
+        // $('#toggle-class').click(function() {
+        //     $('#submit-button').prop('disabled', false);
+        // });
+        // Ejercicio 6
+        // $('#toggle-class').click(function() {
+        //     $('#link').removeAttr('href');
+        // });
+        // Ejercicio 7
+        // $('#toggle-class').click(function() {
+        //     $('#description').removeClass('hidden');
+        // });
+        // Ejercicio 8
+        // $("#toggle-class").click(function () {
+        //   $("#submit-button").prop("disabled", false);
+        // });
+        // Ejercicio 9
+        // $('#toggle-class').click(function() {
+        //     $('#toggle-class').toggleClass('highlight');
+        // });
+        // Ejercicio 10
+        // $('#toggle-class').click(function() {
+        //     $('#input-field').val('Nuevo texto');
+        // });
+      });
+    </script>
+  </body>
+</html>

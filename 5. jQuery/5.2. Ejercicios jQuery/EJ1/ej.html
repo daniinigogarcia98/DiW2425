@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="Botón 1" id="boton1">
+    <input type="button" value="Botón 2" id="boton2">
+    <script>
+        $(document).ready(function(){
+        $("#boton1").on("click", function(){
+            $(this).css("background-color", "red");
+            console.log(this);
+        });
+        $("#boton2").on("click", () => {
+            $(this).css("background-color", "blue");
+            console.log(this);
+        });
+
+        });
+
+        
+
+    </script>
+    <div>
+        <p>Expilcaciones</p>
+        <p>En el código que compartiste, la diferencia principal está en cómo se maneja el valor de this dentro de las funciones asociadas a los eventos de click en los botones.
+
+            Primera función (usando function tradicional):
+            
+            javascript
+            Copiar
+            $("#boton1").on("click", function(){
+                $(this).css("background-color", "red");
+                console.log(this);
+            });
+            En esta función, this hace referencia al elemento HTML que fue clickeado, en este caso el botón con id="boton1". El $(this) se usa para aplicar estilos al botón.
+            El console.log(this) imprimirá el botón en sí mismo en la consola.
+            Segunda función (usando una arrow function () =>):
+            
+            javascript
+            Copiar
+            $("#boton2").on("click", () => {
+                $(this).css("background-color", "blue");
+                console.log(this);
+            });
+            En esta función, el valor de this no hace referencia al botón, sino que hace referencia al contexto en el que se definió la función. En este caso, la función flecha hereda this del contexto global o del contexto en el que la función fue creada, no del evento.
+            Como resultado, el $(this) no será el botón, sino que puede ser undefined o el objeto window (dependiendo del entorno), y eso probablemente causará un comportamiento inesperado.
+            Resumen:
+            La función tradicional (function() { ... }) tiene un this que hace referencia al elemento en el que ocurrió el evento (el botón).
+            La función flecha (() => { ... }) no tiene su propio this; en su lugar, hereda el this del contexto de ejecución (probablemente el objeto global o el objeto window).
+            Por eso, si deseas que el this se refiera al botón en ambos casos, debes usar una función tradicional para manejar eventos.
+            
+            
+            Tú dijiste:
+            que hay que hacer para que haga lo mismo
+            ChatGPT Plus
+            ChatGPT
+            Para que ambas funciones hagan lo mismo, es decir, que el valor de this se refiera al botón clickeado en ambos casos, puedes hacer lo siguiente:
+            
+            Opción 1: Usar una función tradicional en ambos casos.
+            Esto es lo más simple, y es la forma más directa de asegurarte de que this se refiera al botón:
+            
+            javascript
+            Copiar
+            $(document).ready(function() {
+                $("#boton1").on("click", function() {
+                    $(this).css("background-color", "red");
+                    console.log(this);
+                });
+                $("#boton2").on("click", function() {
+                    $(this).css("background-color", "blue");
+                    console.log(this);
+                });
+            });
+            Opción 2: Usar una función flecha pero cambiar cómo accedes al this.
+            Si prefieres usar una función flecha, puedes hacerlo, pero en este caso, debes "capturar" el valor de this antes de entrar en la función flecha. Una forma de hacerlo es utilizando una variable para almacenar el this de la función tradicional:
+            
+            javascript
+            Copiar
+            $(document).ready(function() {
+                $("#boton1").on("click", function() {
+                    var self = this;  // Guarda el valor de `this`
+                    $("#boton1").on("click", () => {
+                        $(self).css("background-color", "red");
+                        console.log(self);
+                    });
+                });
+                
+                $("#boton2").on("click", () => {
+                    $(this).css("background-color", "blue");
+                    console.log(this);  // En este caso, `this` seguirá refiriéndose al contexto global
+                });
+            });
+            Sin embargo, la primera opción es la más sencilla y preferida. Evita complicaciones y es más fácil de mantener.
+            
+            En resumen, para que ambas funciones se comporten igual y el this haga referencia al botón, lo mejor es usar una función tradicional en ambos casos.</p>
+    </div>
+</body>
+</html>

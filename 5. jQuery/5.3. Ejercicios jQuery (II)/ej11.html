@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo con Bootstrap</title>
+  <!-- Agregar Bootstrap desde CDN -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2>Selecciona una marca de coche</h2>
+    <!-- Select con clases de Bootstrap -->
+    <select id="brands" class="form-control w-50">
+      <option value="audi">Audi</option>
+      <option value="bmw">BMW</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="hyundai">Hyundai</option>
+    </select>
+
+    <!-- Div donde se mostrará el mensaje -->
+    <div id="resultado" class="alert alert-info mt-3" style="display: none;"></div>
+  </div>
+
+  <!-- Agregar jQuery y Bootstrap JS desde CDN -->
+  <script src="jquery-3.7.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#brands').change(function() {
+       
+        var selectedBrand = $(this).val();
+        
+      
+        $('#resultado')
+          .text('Has seleccionado: ' + selectedBrand)
+          .fadeIn(); 
+      });
+    });
+  </script>
+</body>
+</html>

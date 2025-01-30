@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imágenes sin atributo alt</title>
+    <script src="jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <style>
+        .sinalt {
+          border: 2px solid red;
+        }
+      </style>
+  
+      <h2>Imágenes sin atributo alt</h2>
+      <img src="img-ej-11.jpg" />
+      <br />
+      <img src="img-ej-13.jpg" />
+  
+      <script>
+        $(document).ready(function () {
+          $("img").each(function () {
+            if ($(this).attr("alt") === undefined || $(this).attr("alt") === "") {
+              $(this).addClass("sinalt");
+            }
+          });
+        });
+      </script>
+</body>
+</html>

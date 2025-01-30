@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 8</title>
+    <script src="jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <h1>Selecciona las Marcas</h1>
+    <input type="checkbox" id="audi" name="brand" value="Audi" />
+    <label for="audi">Audi</label>
+
+    <input type="checkbox" id="mercedes" name="brand" value="Mercedes" />
+    <label for="mercedes">Mercedes</label>
+
+    <input type="checkbox" id="hyundai" name="brand" value="Hyundai" />
+    <label for="hyundai">Hyundai</label>
+
+    <p id="message"></p>
+    <script>
+      function updateMessage() {
+        var selectedBrands = [];
+        $('input[name="brand"]:checked').each(function () {
+          selectedBrands.push($(this).val());
+        });
+
+        if (selectedBrands.length === 0) {
+          $("#message").text("No has seleccionado ninguna marca.");
+        } else {
+          $("#message").text(
+            "marcas seleccionadas: " + selectedBrands.join(", ")
+          );
+        }
+      }
+
+      $('input[name="brand"]').change(updateMessage);
+
+      updateMessage();
+    </script>
+</body>
+</html>

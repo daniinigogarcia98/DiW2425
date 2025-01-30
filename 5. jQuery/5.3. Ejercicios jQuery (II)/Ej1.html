@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contador de Caracteres</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+      #contador {
+        font-size: 14px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Escribe en el textarea</h2>
+    <textarea id="texto" rows="4" cols="50"></textarea>
+    <div id="contador">Caracteres: 0</div>
+
+    <script>
+      $(document).ready(function () {
+        $("#texto").on("input", function () {
+          var caracteres = $(this).val().length;
+          $("#contador").text("Caracteres: " + caracteres);
+        });
+      });
+    </script>
+</body>
+</html>

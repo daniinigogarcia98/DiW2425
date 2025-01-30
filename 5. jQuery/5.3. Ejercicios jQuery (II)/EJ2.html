@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comprobar Scroll</title>
+    <script src="jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div style="height: 2000px; padding: 20px">
+        <h2>Haz scroll para ver la posición en consola</h2>
+        <p>Desplaza hacia abajo y mira la consola.</p>
+      </div>
+  
+      <script>
+        $(document).ready(function () {
+          $(window).on("scroll", function () {
+            var scrollPos = $(window).scrollTop();
+            console.log("Posición del scroll vertical: " + scrollPos);
+          });
+        });
+      </script>
+</body>
+</html>

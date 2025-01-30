@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 10.1</title>
+    <script src="jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <h1>Ejercicio 10.1</h1>
+    <form id="login-form">
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Nombre de Usuario"
+      />
+      <br />
+      <br />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Contraseña"
+      />
+      <br /><br />
+      <input type="submit" id="submit-btn" value="Iniciar Sesión" />
+
+      <div id="alert">
+        <script>
+          $(document).ready(function () {
+            $("#login-form").submit(function (e) {
+              e.preventDefault();
+
+              $("#alert").html("").slideUp();
+
+              if ($("#username").val() === "" || $("#password").val() === "") {
+                $("#alert")
+                  .html("Por favor, complete todos los campos.")
+                  .slideDown();
+              } else {
+                console.log("Formulario enviado correctamente");
+              }
+            });
+          });
+        </script>
+      </div>
+    </form>
+    
+</body>
+</html>

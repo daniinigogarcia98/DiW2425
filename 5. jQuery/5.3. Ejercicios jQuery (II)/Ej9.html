@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 9</title>
+    <script src="jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <style>
+        #ejemplo {
+          width: 200px;
+          padding: 20px;
+          border: 10px solid black;
+        }
+      </style>
+      <script>
+        $(document).ready(function () {
+          var $element = $("#ejemplo");
+  
+          console.log("innerWidth(): " + $element.innerWidth());
+          console.log("outerWidth(): " + $element.outerWidth());
+          console.log("width(): " + $element.width());
+        });
+      </script>
+  
+      <div id="ejemplo"></div>
+</body>
+</html>

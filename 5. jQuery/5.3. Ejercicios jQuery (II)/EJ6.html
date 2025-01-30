@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 6</title>
+    <script src="jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <form>
+        <label for="checkbox"> Selecciona para habilitar el botón:</label>
+        <input type="checkbox" id="checkbox" />
+        <br />
+        <button id="submit-button" disabled>Enviar</button>
+      </form>
+      <script>
+        $(document).ready(function () {
+          $("#checkbox").change(function () {
+            if ($(this).is(":checked")) {
+              $("#submit-button").prop("disabled", false);
+            } else {
+              $("#submit-button").prop("disabled", true);
+            }
+          });
+        });
+      </script>
+</body>
+</html>

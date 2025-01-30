@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+</head>
+<body>
+    <p class="resultado">España <span class="goles">0</span> - <span class="goles">0</span> Francia</p>
+<p class="resultado">Alemania <span class="goles">0</span> - <span class="goles">0</span> Holanda</p>
+<p class="resultado">Inglaterra <span class="goles">0</span> - <span class="goles">0</span> Italia</p>
+
+<style>
+  /* Estilo general para los resultados */
+  .resultado {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 8px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Estilo para los goles */
+  .goles {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
+  /* Colores de equipos (ejemplo: España vs Francia) */
+  .resultado:nth-child(1) {
+    background-color: #ff6f61;  /* España vs Francia */
+  }
+
+  .resultado:nth-child(2) {
+    background-color: #3498db;  /* Alemania vs Holanda */
+  }
+
+  .resultado:nth-child(3) {
+    background-color: #2ecc71;  /* Inglaterra vs Italia */
+  }
+</style>
+
+</body>
+</html>

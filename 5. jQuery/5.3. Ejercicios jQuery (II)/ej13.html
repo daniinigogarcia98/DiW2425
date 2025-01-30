@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.7.1.min.js"></script>
+    <title>Ejercicio 13</title>
+</head>
+<body>
+    <h1>Listado de Coches</h1>
+    <span>Pulsa el botón para actualizar la lista&#8595;</span>
+    <br>
+    <input type="button" value="Actualizar" id="refresh">
+<div id="respuesta"></div>
+
+<script>
+ $(document).ready(function () {
+  $("#refresh").click(function () {
+    $.ajax({
+      url: "jquery-ej-13-coches.json",
+      type: "GET",
+      success: function (data) {
+        $('#respuesta').empty();
+        var listaCoches = $("<ol></ol>");
+        $.each(data, function(index, marca) {
+          var itemMarca = $("<li></li>").text(marca.marca);
+          var sublistaCoches = $("<ul></ul>");  
+
+          $.each(marca.coches, function(i, coche) {
+            var itemCoche = $("<li></li>").text(coche.modelo + " - " + coche.color + " - " + coche.precio);
+            sublistaCoches.append(itemCoche);  
+          });
+
+          itemMarca.append(sublistaCoches); 
+          listaCoches.append(itemMarca);  
+        });
+        $('#respuesta').append(listaCoches);
+      }
+    });
+  });
+});
+
+</script>
+</body>
+</html>

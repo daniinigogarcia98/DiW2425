@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.7.1.min.js"></script>
+    <title>Ejercicio 14</title>
+</head>
+<body>
+    <style>
+        #error-message {
+          display: none;
+          color: red;
+        }
+        input {
+          width: 100px;
+          height: 30px;
+          font-size: 20px;
+        }
+        label {
+          display: block;
+          margin-bottom: 10px;
+        }
+        button {
+          width: 100px;
+          height: 30px;
+          font-size: 20px;
+        }
+        form {
+          margin-top: 20px;
+        }
+        button{
+          background-color: cyan;
+          color: white;
+        }
+      </style>
+      
+      <form>
+        <label for="binary-input">Introduce un número binario:</label>
+        <input type="text" id="binary-input" maxlength="8" required >
+        <button type="submit">Enviar</button>
+      </form>
+      <script>
+        $(document).ready(function() {
+          $('#binary-input').on('keypress', function(event) {
+            const key = event.key;
+    
+            
+            if (key !== '0' && key !== '1') {
+              event.preventDefault(); 
+              
+              
+              $('#error-message').show().delay(1000).fadeOut();
+            }
+          });
+        });
+      </script>
+      <div id="error-message">Introduce sólo números binarios (0 ó 1).</div>
+</body>
+</html>

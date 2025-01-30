@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="jquery-3.7.1.min.js"></script>
+    <title>Ejercicio 15</title>
+  </head>
+  <body>
+    <form id="car-brands-form">
+      <p>Elige al menos una marca de coche:</p>
+      <label><input type="checkbox" name="brand" value="Toyota" /> Toyota</label
+      ><br />
+      <label><input type="checkbox" name="brand" value="Ford" /> Ford</label
+      ><br />
+      <label><input type="checkbox" name="brand" value="Honda" /> Honda</label
+      ><br />
+      <label><input type="checkbox" name="brand" value="BMW" /> BMW</label
+      ><br />
+      <label
+        ><input type="checkbox" name="brand" value="Mercedes" /> Mercedes</label
+      ><br /><br />
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div id="error-message" style="color: red; display: none">
+      Selecciona al menos una marca de coche.
+    </div>
+    <script>
+      $(document).ready(function () {
+        $("#car-brands-form").submit(function (event) {
+          if ($('input[name="brand"]:checked').length === 0) {
+            $("#error-message").show();
+            event.preventDefault();
+          } else {
+            $("#error-message").hide();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

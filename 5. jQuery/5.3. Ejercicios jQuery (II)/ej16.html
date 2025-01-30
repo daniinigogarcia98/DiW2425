@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados Deportivos</title>
+  <script src="jquery-3.7.1.min.js"></script>
+  <style>
+    /* Reset de márgenes y rellenos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background-color: #66b3ff;
+      color: white;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Main Section */
+    main {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+      margin: 20px;
+    }
+
+    /* Section de contenido principal */
+    section {
+      background-color: #ff6f61;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      min-height: 200px;
+    }
+
+    /* Aside con resultados */
+    aside#res {
+      background-color: #fff8dc;
+      color: #333;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      min-height: 200px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #32cd32;
+      color: white;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilo para la animación de desvanecimiento */
+    #res p {
+      text-align: center;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Resultados Deportivos</header>
+  <main>
+    <section>Contenido Principal</section>
+    <aside id="res">Cargando resultados...</aside>
+  </main>
+  <footer>&copy; 2025 Resultados Deportivos</footer>
+
+  <script>
+    $(document).ready(function() {
+      function cargarResultados() {
+        $('#res').fadeOut(500, function() { 
+          $('#res').load('resultados.html', function(response, status, xhr) {
+            if (status == 'error') {
+              $('#res').html('<p>Error al cargar los resultados: ' + xhr.status + ' ' + xhr.statusText + '</p>');
+            }
+            $('#res').fadeIn(500); 
+          });
+        });
+      }
+      cargarResultados();
+      setInterval(cargarResultados, 5000);
+    });
+  </script>
+
+</body>
+</html>

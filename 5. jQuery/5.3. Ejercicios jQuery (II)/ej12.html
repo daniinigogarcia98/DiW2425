@@ -70,13 +70,17 @@
 
             if (response.error === 0) {
               $('#message').addClass('success').text('Inicio de sesión exitoso');
-            } else {
+            } else{
+              if (response.error === 1) {
               $('#message').addClass('error').text('Usuario o contraseña incorrectos');
+              } else {
+                if (response.error !== 0 && response.error !== 1) {
+                $('#message').addClass('error').text('Hubo un error al procesar la solicitud');
+                }
+              }
             }
           },
-          error: function() {
-            $('#message').text('Hubo un error al procesar la solicitud.');
-          }
+          
         });
       });
     });

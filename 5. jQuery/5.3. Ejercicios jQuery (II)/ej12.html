@@ -4,50 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulario de Login</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-  <script>
-    $(document).ready(function() {
-      $('#form-login').submit(function(event) {
-        event.preventDefault();
-        
-        var username = $('#username').val();
-        var password = $('#password').val();
-
-       
-        $.ajax({
-          url: 'login.json', 
-          type: 'GET', 
-          data: {
-            username: username, 
-            password: password
-          },
-          dataType: 'json', 
-          success: function(response) {
-         
-            $('#message').empty();
-
-           
-            if (response.error === 0) {
-              $('#message').text('Inicio de sesión correcto.');  
-            } else {
-              $('#message').text(response.error_msj); 
-            }
-            if (response.error === 1) {
-              $('#message').text('Usuario o contraseña incorrectos.');  
-            }
-          },
-          error: function() {
-            $('#message').text('Hubo un error al procesar la solicitud.');
-          }
-        });
-      });
-    });
-  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
     }
     
+    .success{
+      color:green;
+    }
+    
+    .error {
+      color:red;
+    }
+
     #message {
       color: red;
     }
@@ -81,15 +51,39 @@
       background-color: #45a049;
     }
 
-    .error {
-      color: red;
-    }
-
-    .success {
-      color: green;
-    }
-
   </style>
+  <script>
+    $(document).ready(function() {
+      $('#form-login').submit(function(event) {
+        event.preventDefault();
+        
+        var username = $('#username').val();
+        var password = $('#password').val();
+       
+        $.ajax({
+          url: 'login.json', 
+          type: 'GET', 
+          data: {
+            username: username, 
+            password: password
+          },
+          dataType: 'json', 
+          success: function(response) {
+            $('#message').removeClass('error success'); // Elimina ambas clases antes de agregar la nueva
+
+            if (response.error === 0) {
+              $('#message').addClass('success').text('Inicio de sesión exitoso');
+            } else {
+              $('#message').addClass('error').text('Usuario o contraseña incorrectos');
+            }
+          },
+          error: function() {
+            $('#message').text('Hubo un error al procesar la solicitud.');
+          }
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <h1>Formulario de Login</h1>

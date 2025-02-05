@@ -18,8 +18,10 @@
       <option value="hyundai">Hyundai</option>
     </select>
 
-    <!-- Div donde se mostrará el mensaje -->
-    <div id="resultado" class="alert alert-info mt-3" style="display: none;"></div>
+    <!-- Lista numerada donde se mostrarán las marcas seleccionadas -->
+    <div id="resultado" class="mt-3">
+      <ol id="marcaLista" class="list-group"></ol>
+    </div>
   </div>
 
   <!-- Agregar jQuery y Bootstrap JS desde CDN -->
@@ -27,14 +29,20 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <script>
     $(document).ready(function() {
+      let counter = 1; // Iniciar el contador para la numeración
+
       $('#brands').change(function() {
-       
-        var selectedBrand = $(this).val();
-        
-      
-        $('#resultado')
-          .text('Has seleccionado: ' + selectedBrand)
-          .fadeIn(); 
+        // Obtener la marca seleccionada
+        let selectedBrand = $("#brands option:selected").val();
+
+        // Crear el texto con la numeración
+        let listItemText = counter + '. Has seleccionado ' + selectedBrand;
+
+        // Agregar la marca seleccionada como un nuevo item en la lista ordenada
+        $('#marcaLista').append('<li class="list-group-item">' + listItemText + '</li>');
+
+        // Incrementar el contador
+        counter++;
       });
     });
   </script>

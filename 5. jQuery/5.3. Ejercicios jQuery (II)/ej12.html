@@ -18,9 +18,6 @@
       color:red;
     }
 
-    #message {
-      color: red;
-    }
 
     label {
       display: block;
@@ -69,7 +66,7 @@
           },
           dataType: 'json', 
           success: function(response) {
-            $('#message').removeClass('error success'); // Elimina ambas clases antes de agregar la nueva
+            $('#message').removeClass('error success'); 
 
             if (response.error === 0) {
               $('#message').addClass('success').text('Inicio de sesión exitoso');

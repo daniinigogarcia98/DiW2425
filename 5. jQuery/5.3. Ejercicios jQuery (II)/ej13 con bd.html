@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.7.1.min.js"></script>
+    <title>Ejercicio 13 Con AJAX y Base de Datos local </title>
+</head>
+<body>
+    <h1>Listado de Coches</h1>
+    <span>Pulsa el botón para actualizar la lista &#8595;</span>
+    <br>
+    <input type="button" value="Actualizar" id="refresh">
+    <div id="respuesta"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#refresh").click(function () {
+                $.ajax({
+                    url: "http://localhost/listarcoches.php", // URL al archivo PHP
+                    type: "GET",
+                    dataType: 'json', // Asegurarse de que los datos sean en formato JSON
+                    success: function (data) {
+                        console.log("Datos recibidos:", data); // Verifica que los datos llegan correctamente
+
+                        // Limpiar la respuesta anterior
+                        $('#respuesta').empty();
+
+                        // Verifica si la respuesta está vacía
+                        if (data.length === 0) {
+                            $('#respuesta').append('<p>No se encontraron marcas o coches.</p>');
+                            return;
+                        }
+
+                        var listaCoches = $("<ol></ol>");
+                        
+                        // Recorrer las marcas y coches
+                        $.each(data, function(index, marca) {
+                            console.log("Marca:", marca); // Verifica cada marca y coches
+
+                            var itemMarca = $("<li></li>").text(marca.marca);
+                            var sublistaCoches = $("<ul></ul>");
+
+                            // Recorrer los coches de la marca
+                            $.each(marca.coches, function(i, coche) {
+                                console.log("Coche:", coche); // Verifica cada coche
+                                var itemCoche = $("<li></li>").text(coche.modelo + " - " + coche.color + " - " + coche.precio);
+                                sublistaCoches.append(itemCoche);
+                            });
+
+                            itemMarca.append(sublistaCoches);
+                            listaCoches.append(itemMarca);
+                        });
+
+                        $('#respuesta').append(listaCoches);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+                        $('#respuesta').append('<p>Hubo un error al obtener los datos.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

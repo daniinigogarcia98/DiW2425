@@ -14,32 +14,76 @@
 <div id="respuesta"></div>
 
 <script>
- $(document).ready(function () {
-  $("#refresh").click(function () {
-    $.ajax({
-      url: "jquery-ej-13-coches.json",
-      type: "GET",
-      success: function (data) {
-        $('#respuesta').empty();
-        var listaCoches = $("<ol></ol>");
-        $.each(data, function(index, marca) {
-          var itemMarca = $("<li></li>").text(marca.marca);
-          var sublistaCoches = $("<ul></ul>");  
+  // mi codigo
+//  $(document).ready(function () {
+//   $("#refresh").click(function () {
+//     $.ajax({
+//       url: "jquery-ej-13-coches.json",
+//       type: "GET",
+//       success: function (data) {
+//         $('#respuesta').empty();
+//         var listaCoches = $("<ol></ol>");
+//         $.each(data, function(index, marca) {
+//           var itemMarca = $("<li></li>").text(marca.marca);
+//           var sublistaCoches = $("<ul></ul>");  
 
-          $.each(marca.coches, function(i, coche) {
-            var itemCoche = $("<li></li>").text(coche.modelo + " - " + coche.color + " - " + coche.precio);
-            sublistaCoches.append(itemCoche);  
-          });
+//           $.each(marca.coches, function(i, coche) {
+//             var itemCoche = $("<li></li>").text(coche.modelo + " - " + coche.color + " - " + coche.precio);
+//             sublistaCoches.append(itemCoche);  
+//           });
 
-          itemMarca.append(sublistaCoches); 
-          listaCoches.append(itemMarca);  
+//           itemMarca.append(sublistaCoches); 
+//           listaCoches.append(itemMarca);  
+//         });
+//         $('#respuesta').append(listaCoches);
+//       }
+//     });
+//   });
+// });
+$(document).ready(function () {
+      $("#refresh").on("click", function () {
+        $.ajax({
+          url: "jquery-ej-13-coches.json",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+
+            // Creamos el <ol> para la lista externa
+            let ol_externo = $("<ol>");
+
+            // Iteramos sobre el array de marcas
+            $.each(data, function (index, marca) {
+              // Creamos el <li> para la marca
+              let li = $("<li>").text(marca.marca);
+
+              // Creamos el <ol> para la lista interna
+              let ol_interno = $("<ol>");
+
+              // Iteramos sobre el array de coches
+              $.each(marca.coches, function (index, coche) {
+                // Creamos el <li> para el coche
+                let li = $("<li>").text(coche.modelo + ", " + coche.color.toLowerCase() + ", " + coche.precio);
+
+                // Añadimos el <li> al <ol> interno
+                ol_interno.append(li);
+              });
+
+              // Añadimos el <ol> interno al <li> de la marca
+              li.append(ol_interno);
+
+              // Añadimos el <li> de la marca al <ol> externo
+              ol_externo.append(li);
+            });
+
+            // Finalmente, añadimos el <ol> externo al div#respuesta
+            $("#respuesta").html(ol_externo);
+
+            // El $.each() se podría haber hecho también con:
+            // $(data).each(function (index, marca) {}
+          }
         });
-        $('#respuesta').append(listaCoches);
-      }
+      });
     });
-  });
-});
-
 </script>
 </body>
 </html>

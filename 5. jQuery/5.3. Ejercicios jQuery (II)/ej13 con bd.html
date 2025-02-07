@@ -14,53 +14,97 @@
     <div id="respuesta"></div>
 
     <script>
-        $(document).ready(function () {
-            $("#refresh").click(function () {
-                $.ajax({
-                    url: "http://localhost/listarcoches.php", // URL al archivo PHP
-                    type: "GET",
-                    dataType: 'json', // Asegurarse de que los datos sean en formato JSON
-                    success: function (data) {
-                        console.log("Datos recibidos:", data); // Verifica que los datos llegan correctamente
+        // $(document).ready(function () {
+        //     $("#refresh").click(function () {
+        //         $.ajax({
+        //             url: "http://localhost/listarcoches.php", // URL al archivo PHP
+        //             type: "GET",
+        //             dataType: 'json', // Asegurarse de que los datos sean en formato JSON
+        //             success: function (data) {
+        //                 console.log("Datos recibidos:", data); // Verifica que los datos llegan correctamente
 
-                        // Limpiar la respuesta anterior
-                        $('#respuesta').empty();
+        //                 // Limpiar la respuesta anterior
+        //                 $('#respuesta').empty();
 
-                        // Verifica si la respuesta está vacía
-                        if (data.length === 0) {
-                            $('#respuesta').append('<p>No se encontraron marcas o coches.</p>');
-                            return;
-                        }
+        //                 // Verifica si la respuesta está vacía
+        //                 if (data.length === 0) {
+        //                     $('#respuesta').append('<p>No se encontraron marcas o coches.</p>');
+        //                     return;
+        //                 }
 
-                        var listaCoches = $("<ol></ol>");
+        //                 var listaCoches = $("<ol></ol>");
                         
-                        // Recorrer las marcas y coches
-                        $.each(data, function(index, marca) {
-                            console.log("Marca:", marca); // Verifica cada marca y coches
+        //                 // Recorrer las marcas y coches
+        //                 $.each(data, function(index, marca) {
+        //                     console.log("Marca:", marca); // Verifica cada marca y coches
 
-                            var itemMarca = $("<li></li>").text(marca.marca);
-                            var sublistaCoches = $("<ul></ul>");
+        //                     var itemMarca = $("<li></li>").text(marca.marca);
+        //                     var sublistaCoches = $("<ul></ul>");
 
-                            // Recorrer los coches de la marca
-                            $.each(marca.coches, function(i, coche) {
-                                console.log("Coche:", coche); // Verifica cada coche
-                                var itemCoche = $("<li></li>").text(coche.modelo + " - " + coche.color + " - " + coche.precio);
-                                sublistaCoches.append(itemCoche);
-                            });
+        //                     // Recorrer los coches de la marca
+        //                     $.each(marca.coches, function(i, coche) {
+        //                         console.log("Coche:", coche); // Verifica cada coche
+        //                         var itemCoche = $("<li></li>").text(coche.modelo + " - " + coche.color + " - " + coche.precio);
+        //                         sublistaCoches.append(itemCoche);
+        //                     });
 
-                            itemMarca.append(sublistaCoches);
-                            listaCoches.append(itemMarca);
-                        });
+        //                     itemMarca.append(sublistaCoches);
+        //                     listaCoches.append(itemMarca);
+        //                 });
 
-                        $('#respuesta').append(listaCoches);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-                        $('#respuesta').append('<p>Hubo un error al obtener los datos.</p>');
-                    }
-                });
+        //                 $('#respuesta').append(listaCoches);
+        //             },
+        //             error: function (jqXHR, textStatus, errorThrown) {
+        //                 console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+        //                 $('#respuesta').append('<p>Hubo un error al obtener los datos.</p>');
+        //             }
+        //         });
+        //     });
+        // });
+        $(document).ready(function () {
+      $("#refresh").on("click", function () {
+        $.ajax({
+          url: "http://localhost/listarcoches.php",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+
+            // Creamos el <ol> para la lista externa
+            let ol_externo = $("<ol>");
+
+            // Iteramos sobre el array de marcas
+            $.each(data, function (index, marca) {
+              // Creamos el <li> para la marca
+              let li = $("<li>").text(marca.marca);
+
+              // Creamos el <ol> para la lista interna
+              let ol_interno = $("<ol>");
+
+              // Iteramos sobre el array de coches
+              $.each(marca.coches, function (index, coche) {
+                // Creamos el <li> para el coche
+                let li = $("<li>").text(coche.modelo + ", " + coche.color.toLowerCase() + ", " + coche.precio);
+
+                // Añadimos el <li> al <ol> interno
+                ol_interno.append(li);
+              });
+
+              // Añadimos el <ol> interno al <li> de la marca
+              li.append(ol_interno);
+
+              // Añadimos el <li> de la marca al <ol> externo
+              ol_externo.append(li);
             });
+
+            // Finalmente, añadimos el <ol> externo al div#respuesta
+            $("#respuesta").html(ol_externo);
+
+            // El $.each() se podría haber hecho también con:
+            // $(data).each(function (index, marca) {}
+          }
         });
+      });
+    });
     </script>
 </body>
 </html>

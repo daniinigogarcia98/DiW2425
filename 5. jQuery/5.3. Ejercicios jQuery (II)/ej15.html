@@ -27,16 +27,36 @@
       Selecciona al menos una marca de coche.
     </div>
     <script>
+      // Mi solución
+      // $(document).ready(function () {
+      //   $("#car-brands-form").submit(function (event) {
+      //     if ($('input[name="brand"]:checked').length === 0) {
+      //       $("#error-message").show();
+      //       event.preventDefault();
+      //     } else {
+      //       $("#error-message").hide();
+      //     }
+      //   });
+      // });
+      // isacc solución
       $(document).ready(function () {
-        $("#car-brands-form").submit(function (event) {
-          if ($('input[name="brand"]:checked').length === 0) {
-            $("#error-message").show();
-            event.preventDefault();
-          } else {
-            $("#error-message").hide();
+      $('#car-brands-form').on("submit", function (e) {
+        if ($('input[name="brand"]:checked').length === 0) {
+          // Si no hay ningún checkbox marcado, mostramos el mensaje de error y evitamos que se envíe el formulario
+          e.preventDefault();
+          if ($('#error-message').is(':visible')) {
+            // Si el mensaje de error ya está visible, lo hacemos parpadear
+            $('#error-message').fadeOut().fadeIn();
           }
-        });
+          else {
+            $('#error-message').fadeIn();
+          }
+        }
+        else {
+          $('#error-message').hide();
+        }
       });
+    });
     </script>
   </body>
 </html>

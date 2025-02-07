@@ -41,17 +41,44 @@
         <button type="submit">Enviar</button>
       </form>
       <script>
-        $(function() {
-          $('#binary-input').on('keydown', function(event) {
-            const key = event.key;
+        //Mi solución
+        // $(function() {
+        //   $('#binary-input').on('keydown', function(event) {
+        //     const key = event.key;
       
-            if (key !== '0' && key !== '1') {
-              event.preventDefault(); 
+        //     if (key !== '0' && key !== '1') {
+        //       event.preventDefault(); 
       
-              $('#error-message').fadeIn().delay(1000).fadeOut();
-            }
-          });
-        });
+        //       $('#error-message').fadeIn().delay(1000).fadeOut();
+        //     }
+        //   });
+        // });
+        // isacc solución
+        $(document).ready(function () {
+      // Tenemos que utilizar el evento keydown, que es el que permite capturar la tecla pulsada antes de que se inserte en el input
+      $('#binary-input').on('keydown', function (e) {
+        if (e.key !== '0' && e.key !== '1' && e.key !== 'Backspace') {
+          // Si la tecla pulsada no es 0, 1 o Backspace, mostramos el mensaje de error
+          $('#error-message').slideDown().delay(1000).slideUp();
+
+          // Y evitamos que se inserte en el input
+          e.preventDefault();
+        }
+      });
+
+      // Una mejora podría ser limpiar el timeout si se vuelve a pulsar una tecla no válida antes de que se oculte el mensaje de error
+      // let timeout;
+      // $('#binary-input').on('keydown', function (e) {
+      //   if (e.key !== '0' && e.key !== '1' && e.key !== 'Backspace') {
+      //     clearTimeout(timeout);
+      //     $('#error-message').slideDown();
+      //     timeout = setTimeout(function () {
+      //       $('#error-message').slideUp();
+      //     }, 1000);
+      //     e.preventDefault();
+      //   }
+      // });
+    });
       </script>
       
       

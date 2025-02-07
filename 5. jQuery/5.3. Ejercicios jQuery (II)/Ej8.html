@@ -18,25 +18,52 @@
     <label for="hyundai">Hyundai</label>
 
     <p id="message"></p>
-    <script>
-      function updateMessage() {
-        var selectedBrands = [];
-        $('input[name="brand"]:checked').each(function () {
-          selectedBrands.push($(this).val());
-        });
-
-        if (selectedBrands.length === 0) {
-          $("#message").text("No has seleccionado ninguna marca.");
-        } else {
-          $("#message").text(
-            "marcas seleccionadas: " + selectedBrands.join(", ")
-          );
-        }
+    <style>
+      #message {
+        font-weight: bold;
+        margin-top: 10px;
       }
+  
+      .rojo {
+        color: red;
+      }
+  
+      .azul {
+        color: blue;
+      }
+    </style>
+    <script>
+       $(document).ready(function () {
+      // El evento que tenemos que usar podría ser "change", "input" o "click"
+      // El mejor: "change". Con "input" podríamos tener problemas de compatibilidad
+      // El selector también podría ser "input[type=checkbox]", pero es menos restrictivo
+      $("input[name=brand]").on("change", function () {
+        let texto = "Opciones seleccionadas: ";
+        let $cb_checked = $("input[name=brand]:checked");
+        let $mensaje = $("#message");
+        $mensaje.removeClass("rojo azul");
 
-      $('input[name="brand"]').change(updateMessage);
+        if ($cb_checked.length) {
+          $cb_checked.each(function () {
+            texto += $(this).val() + " ";
+          });
+          // .each() admite dos parámetros: el índice y el elemento, entonces:
+          // $cb_checked.each(function (index, element) {
+          //   texto += $(element).val() + " ";
+          // });
 
-      updateMessage();
+          // Con map() y join() también es posible, pero es JS nativo
+          // texto = "Opciones seleccionadas: " + $cb_checked.map(function () { return $(this).val(); }).get().join(" ");
+
+          $("#message").text(texto);
+          $mensaje.addClass("azul");
+        }
+        else {
+          $("#message").text("No has seleccionado ninguna opción.");
+          $mensaje.addClass("rojo");
+        }
+      });
+    });
     </script>
 </body>
 </html>

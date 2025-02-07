@@ -65,7 +65,8 @@
         }
         $.ajax({
           url: 'login.json', 
-          type: 'GET', 
+          // type: 'GET', //Metodo por defecto 
+          // method: 'GET' // metodo por defecto moderno
           data: {
             username: username, 
             password: password

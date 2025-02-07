@@ -28,21 +28,38 @@
   <script src="jquery-3.7.1.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <script>
-    $(document).ready(function() {
-      let counter = 1; // Iniciar el contador para la numeración
+    //mi codigo
+    // $(document).ready(function() {
+    //   let counter = 1; // Iniciar el contador para la numeración
 
-      $('#brands').change(function() {
-        // Obtener la marca seleccionada
-        let selectedBrand = $("#brands option:selected").val();
+    //   $('#brands').change(function() {
+    //     // Obtener la marca seleccionada
+    //     let selectedBrand = $("#brands option:selected").val();
 
-        // Crear el texto con la numeración
-        let listItemText = counter + '. Has seleccionado ' + selectedBrand;
+    //     // Crear el texto con la numeración
+    //     let listItemText = counter + '. Has seleccionado ' + selectedBrand;
 
-        // Agregar la marca seleccionada como un nuevo item en la lista ordenada
-        $('#marcaLista').append('<li class="list-group-item">' + listItemText + '</li>');
+    //     // Agregar la marca seleccionada como un nuevo item en la lista ordenada
+    //     $('#marcaLista').append('<li class="list-group-item">' + listItemText + '</li>');
 
-        // Incrementar el contador
-        counter++;
+    //     // Incrementar el contador
+    //     counter++;
+    //   });
+    // });
+    //isacc solucion
+    $(document).ready(function () {
+      $("#brands").on("change", function () {
+        // Si el ol#list no existe, lo creamos
+        if ($("ol#lista").length === 0) {
+          $("#resultado").append(
+            $("<ol>").attr("id", "lista")
+          );
+        }
+
+        // Insertamos un li con el mensaje dentro del ol
+        $("ol#lista").append(
+          $("<li>").text("Has seleccionado " + $(this).val())
+        );
       });
     });
   </script>

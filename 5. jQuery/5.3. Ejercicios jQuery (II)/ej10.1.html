@@ -26,25 +26,24 @@
       <br /><br />
       <input type="submit" id="submit-btn" value="Iniciar Sesión" />
 
-      <div id="alert">
-        <script>
-          $(document).ready(function () {
-            $("#login-form").submit(function (e) {
-              e.preventDefault();
+      <div id="alert"></div>
+      <script>
+        $(document).ready(function () {
+          $("#login-form").submit(function (e) {
+            e.preventDefault();
 
-              $("#alert").html("").slideUp();
+            $("#alert").html("").slideUp();
 
-              if ($("#username").val() === "" || $("#password").val() === "") {
-                $("#alert")
-                  .html("Por favor, complete todos los campos.")
-                  .slideDown();
-              } else {
-                console.log("Formulario enviado correctamente");
-              }
-            });
+            if ($("#username").val() === "" || $("#password").val() === "") {
+              $("#alert")
+                .html("Por favor, complete todos los campos.")
+                .slideDown();
+            } else {
+              console.log("Formulario enviado correctamente");
+            }
           });
-        </script>
-      </div>
+        });
+      </script>
     </form>
     
 </body>

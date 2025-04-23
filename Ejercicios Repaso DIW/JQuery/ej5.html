@@ -17,34 +17,46 @@
       </form>
 </body>
 <script>
-    $(function () {
-      $('#miFormulario input').on('keydown', function (e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          let vacio = false;
+   $(document).ready(function () {
+
+    function validarFormulario() {
+        let usuario = $('#usuario').val().trim();
+        let password = $('#password').val().trim();
+        let hayError = false;
+
     
-          $('#mensaje-error').hide();
-          $('#usuario, #password').css('outline', '');
-    
-          if (!$('#usuario').val().trim()) {
+        $('#mensaje-error').hide();
+
+        if (usuario === '') {
             $('#usuario').css('outline', '2px solid red');
-            vacio = true;
-          }
-          if (!$('#password').val().trim()) {
-            $('#password').css('outline', '2px solid red');
-            vacio = true;
-          }
-    
-          if (vacio) {
-            $('#mensaje-error').text('Rellena todo los campos.').fadeIn();
-          }
+            hayError = true;
         }
-      });
+
+      
+        if (password === '') {
+            $('#password').css('outline', '2px solid red');
+            hayError = true;
+        }
+
     
-      $('#usuario, #password').on('focus', function () {
-        $(this).css('outline', '');
-        $('#mensaje-error').fadeOut();
-      });
+        if (hayError) {
+            $('#mensaje-error').text('Por favor, complete todos los campos.').fadeIn();
+        }
+
+        return !hayError; 
+    }
+
+  
+    $('#miFormulario input').on('keypress', function (e) {
+        if (e.which === 13) { 
+            e.preventDefault(); 
+            validarFormulario();
+        }
     });
+    $('#miFormulario input').on('focus', function () {
+        $(this).css('outline', ''); 
+        $('#mensaje-error').fadeOut(); 
+    });
+});
 </script>
 </html>

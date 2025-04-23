@@ -1,0 +1,15 @@
+form {
+    max-width: 400px;
+    margin: 0px auto;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+  }
+  .focused {
+    border: 2px solid gray;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }

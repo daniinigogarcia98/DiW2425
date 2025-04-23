@@ -1,0 +1,10 @@
+.resultado {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.valido {
+    color: green;
+}
+.invalido {
+    color: red;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ej7</title>
+    <link rel="stylesheet" href="css/ej7.css" />
+    <script src="js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <label for="inputIP">Introduce una dirección IPv4:</label>
+    <input type="text" id="inputIP" placeholder="Ej: 192.168.1.1">
+    <button id="validarIP">Validar IP</button>
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        $(document).ready(function () {
+            const ipv4Pattern = /^(?:(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.){3}(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])$/;
+
+            $('#validarIP').on('click', function () {
+                const inputValue = $('#inputIP').val().trim();
+                if (ipv4Pattern.test(inputValue)) {
+                    $('#resultado')
+                        .text('La dirección IPv4 es válida.')
+                        .removeClass('invalido')
+                        .addClass('valido');
+                } else {
+                    $('#resultado')
+                        .text('La dirección IPv4 no es válida.')
+                        .removeClass('valido')
+                        .addClass('invalido');
+                }
+            });
+        });
+    </script>
+</html>

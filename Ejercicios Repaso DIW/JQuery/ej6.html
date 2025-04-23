@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej6</title>
+</head>
+<link rel="stylesheet" href="css/ej6.css">
+<script src="js/jquery-3.7.1.min.js"></script>
+<body>
+    <input type="text" id="input">
+<input type="button" id="btnLimpiar" value="Limpiar div">
+<div id="texto"></div>
+</body>
+<script>
+    $(document).ready(function () {
+    function agregarMensaje(evento) {
+        let marcaTemporal = new Date().toLocaleString();
+        let mensaje = `${evento.type} - ${marcaTemporal}`;
+        $("#texto").append(`<p>${mensaje}</p>`);
+    }
+
+    $("#input").on("keyup", function (event) {
+        agregarMensaje(event);
+    });
+
+    $("#input").on("keydown", function (event) {
+        agregarMensaje(event);
+    });
+
+    $("#input").on("input", function (event) {
+        agregarMensaje(event);
+    });
+
+    $("#input").on("change", function (event) {
+        agregarMensaje(event);
+    });
+
+    $("#btnLimpiar").on("click", function () {
+        $("#texto").empty();
+    });
+});
+</script>
+</html>

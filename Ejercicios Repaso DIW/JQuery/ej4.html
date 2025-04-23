@@ -4,49 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efecto Formulario</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        form {
-            padding: 20px;
-            margin: 20px;
-            background-color: #f9f9f9;
-        }
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/ej4.css">
     </style>
 </head>
 <body>
-    <form>
+    <form action="#" method="post">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre"><br><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-        
+        <input type="text" id="nombre" name="nombre" placeholder="Lorem ipsum" required>
+      
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" name="categoria">
+          <option value="opcion1">Lorem</option>
+          <option value="opcion2">Ipsum</option>
+          <option value="opcion3">Dolor</option>
+        </select>
+      
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+      
         <button type="submit">Enviar</button>
-    </form>
-
+      </form>
     <script>
-       $(document).ready(function() {
-  
-    const $form = $('form');
-
- 
-    $form.on('focusin', function() {
-        
-        $(this).css({
-            'border': '2px solid gray', 
-            'border-radius': '10px',   
-            'box-shadow': '0 0 10px rgba(0, 0, 0, 0.3)' 
-        });
-    });
-
- 
-    $form.on('focusout', function() {
-        $(this).css({
-            'border': '',           
-            'border-radius': '',   
-            'box-shadow': ''       
-        });
-    });
+  $(document).ready(function () {
+  $('form input, form select, form textarea').on('focus', function () {
+    $('form').css('box-shadow', '0 0 10px gray');
+  }).on('blur', function () {
+    $('form').css('box-shadow', '');
+  });
 });
     </script>
 </body>

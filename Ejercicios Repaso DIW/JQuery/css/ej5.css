@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.my-2 {
+    margin: 20px;
+}
+
+#miFormulario {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#miFormulario label {
+    margin-bottom: 5px;
+}
+
+#miFormulario input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+#miFormulario input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#miFormulario input:invalid {
+    border-color: red;
+}
+
+#mensaje-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}

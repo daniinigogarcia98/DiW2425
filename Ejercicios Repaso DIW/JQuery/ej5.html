@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej5</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/ej5.css">
+</head>
+<body>
+    <form id="miFormulario" class="my-2">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password">
+        <div id="mensaje-error" style="color: red;"></div>
+      </form>
+</body>
+<script>
+    $(function () {
+      $('#miFormulario input').on('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          let vacio = false;
+    
+          $('#mensaje-error').hide();
+          $('#usuario, #password').css('outline', '');
+    
+          if (!$('#usuario').val().trim()) {
+            $('#usuario').css('outline', '2px solid red');
+            vacio = true;
+          }
+          if (!$('#password').val().trim()) {
+            $('#password').css('outline', '2px solid red');
+            vacio = true;
+          }
+    
+          if (vacio) {
+            $('#mensaje-error').text('Rellena todo los campos.').fadeIn();
+          }
+        }
+      });
+    
+      $('#usuario, #password').on('focus', function () {
+        $(this).css('outline', '');
+        $('#mensaje-error').fadeOut();
+      });
+    });
+</script>
+</html>

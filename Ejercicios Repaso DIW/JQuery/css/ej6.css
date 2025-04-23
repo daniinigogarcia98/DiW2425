@@ -1,0 +1,7 @@
+#texto {
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: lightgrey;
+    border: 1px solid darkgrey;
+    padding: 1em;
+  }

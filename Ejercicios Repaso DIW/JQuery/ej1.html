@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <title>ej1</title>
+</head>
+<body>
+    <label for="celsius">Grados Celsius:</label>
+<input type="number" id="celsius">
+<br>
+<label for="fahrenheit">Grados Fahrenheit:</label>
+<input type="number" id="fahrenheit">
+<script>
+    $(document).ready(function() {
+        $('#celsius').on('input', function() {
+            let celsius = parseFloat($(this).val());
+            if (!isNaN(celsius)) {
+                let fahrenheit = (celsius * 9/5) + 32;
+                $('#fahrenheit').val(fahrenheit.toFixed(2)); 
+            } else {
+                $('#fahrenheit').val('');
+            }
+        });
+
+        $('#fahrenheit').on('input', function() {
+            let fahrenheit = parseFloat($(this).val());
+            if (!isNaN(fahrenheit)) {
+                let celsius = (fahrenheit - 32) * 5/9;
+                $('#celsius').val(celsius.toFixed(2)); 
+                $('#celsius').val('');
+            }
+        });
+    });
+</script>
+</body>
+</html>

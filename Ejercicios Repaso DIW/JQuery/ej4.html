@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efecto Formulario</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        form {
+            padding: 20px;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+       $(document).ready(function() {
+  
+    const $form = $('form');
+
+ 
+    $form.on('focusin', function() {
+        
+        $(this).css({
+            'border': '2px solid gray', 
+            'border-radius': '10px',   
+            'box-shadow': '0 0 10px rgba(0, 0, 0, 0.3)' 
+        });
+    });
+
+ 
+    $form.on('focusout', function() {
+        $(this).css({
+            'border': '',           
+            'border-radius': '',   
+            'box-shadow': ''       
+        });
+    });
+});
+    </script>
+</body>
+</html>

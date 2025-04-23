@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformar Vocales</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+ <fieldset>
+    <legend>Transformar Vocales</legend>
+    <p>Escribe algo y pulsa el botón para transformar las vocales en i.</p>
+    <label for="texto">Escribe algo:</label>
+    <input type="text" id="texto" placeholder="Introduce texto aquí">
+ </fieldset>
+    
+
+    <!-- <script>
+        $(document).ready(function() {
+
+            $('#texto').on('input', function(event) {
+                let valor = $(this).val();
+                let valorTransformado = valor.replace(/[aeiouAEIOU]/g, 'i');
+                $(this).val(valorTransformado);
+            });
+        });
+    </script>  -->
+    <!-- keydown: cuando se pulsa una tecla -->
+    <script>
+        $(document).ready(function () {
+            $('#texto').on('keydown', function (event) {
+                const tecla = event.key;
+                if (tecla === "Backspace") {
+                    let valorActual = $(this).val();
+                    let nuevoValor = valorActual.slice(0, -1);
+                    $(this).val(nuevoValor);
+                    event.preventDefault();
+                    return;
+                }
+                if (tecla.length > 1) {
+                    return;
+                }
+                event.preventDefault();
+                let valorActual = $(this).val();
+                let nuevaCadena = valorActual + tecla;
+                let transformado = '';
+                for (let i = 0; i < nuevaCadena.length; i++) {
+                    let char = nuevaCadena[i];
+                    if ('aeiouAEIOU'.includes(char)) {
+                        transformado += 'i';
+                    } else {
+                        transformado += char;
+                    }
+                }
+    
+                $(this).val(transformado);
+            });
+        });
+    </script>
+    
+</body>
+</html>

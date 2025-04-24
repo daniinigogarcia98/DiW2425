@@ -6,10 +6,10 @@
  
  /* For mobile phones: */
  [class*="col-"] {
-   flex:0 0 auto;
-   width: 100%;
-   padding: 15px;
- }
+  padding: 1rem; 
+  flex: 0 0 auto;
+  width: 100%;
+}
  
 
 /* For tablets: */
@@ -58,15 +58,6 @@
 
 /* For desktop: */
 @media only screen and (min-width: 900px) {
-  /* Link de ir arriba se muestra solo en versión de escritorio */
-  a#scroll-to-top {
-    display: block;
-  }
-
-  .d-d-block {
-    display: block;
-  }
-
   .col-d-1 {
     width: 8.33%;
   }
@@ -103,4 +94,16 @@
   .col-d-12 {
     width: 100%;
   }
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
 }
+.nav-links a.active {
+  display: flex;
+  color: #4F46E5;
+  font-weight: bold;
+}
+}
+

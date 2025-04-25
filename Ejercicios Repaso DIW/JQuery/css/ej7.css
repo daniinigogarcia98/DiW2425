@@ -8,3 +8,25 @@
 .invalido {
     color: red;
 }
+#validarIP {
+    padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: #17a2b8; 
+      border: 1px solid #17a2b8; 
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s;
+}
+#validarIP:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+#validarIP:active {
+    background-color: #0e6a76; 
+      border-color: #0a4e55;
+}

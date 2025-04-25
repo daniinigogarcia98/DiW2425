@@ -15,9 +15,9 @@
 <script>
     $(document).ready(function () {
     function agregarMensaje(evento) {
-        let marcaTemporal = new Date().toLocaleString();
-        let mensaje = `${evento.type} - ${marcaTemporal}`;
-        $("#texto").append(`<p>${mensaje}</p>`);
+        let marcaTemporal = (new Date().toLocaleString() +": "+"Marca temporal " );
+        let mensaje =evento.type + " " + marcaTemporal;
+        $("#texto").append(mensaje + "<p>" + "<p>" );
     }
 
     $("#input").on("keyup", function (event) {

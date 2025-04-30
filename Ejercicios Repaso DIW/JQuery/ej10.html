@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/ej10.css">
+</head>
+<body>
+    <div>
+        <label><input type="radio" name="alerta" value="danger"> Danger</label>
+        <label><input type="radio" name="alerta" value="success"> Success</label>
+      </div>
+        
+      <p class="alert">Este párrafo cambiará su estilo según el radiobutton seleccionado</p>
+      <script>
+        $(document).ready(function() {
+          $('input[name="alerta"]').change(function() {
+            const valor = $(this).val(); 
+            const $parrafo = $('p.alert');
+        
+            $parrafo.removeClass('alert-danger alert-success');
+        
+            $parrafo.addClass('alert-' + valor);
+          });
+        });
+        </script>
+</body>
+</html>

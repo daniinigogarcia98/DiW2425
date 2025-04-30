@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/ej11.css">
+</head>
+<body>
+    <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="selectAll"> Seleccionar todos
+        </label>
+        
+        <div class="options">
+          <label><input type="checkbox" name="option"> Opción 1</label>
+          <label><input type="checkbox" name="option"> Opción 2</label>
+          <label><input type="checkbox" name="option"> Opción 3</label>
+          <label><input type="checkbox" name="option"> Opción 4</label>
+        </div>
+      </div>
+</body>
+<script>
+    $(document).ready(function() {
+      $('#selectAll').change(function() {
+        const isChecked = $(this).is(':checked');
+        const $options = $('.options input[type="checkbox"]');
+        
+        if (isChecked) {
+          $options.prop('checked', true).prop('disabled', true);
+        } else {
+          $options.prop('checked', false).prop('disabled', false);
+        }
+      });
+    });
+    </script>
+</html>

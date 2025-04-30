@@ -1,0 +1,15 @@
+.checkbox-group {
+    border: 1px solid #ccc;
+    padding: 15px;
+    max-width: 300px;
+  }
+  
+  .options {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .options label {
+    display: block;
+    margin: 5px 0;
+  }

@@ -14,19 +14,14 @@
   </body>
   <script>
     $(document).ready(function() {
-      const $paragraph = $('<p>', { text: 'Este es un párrafo cuyo color cambiará según los radio buttons seleccionados.' });
+      const parrafo = $('<p>').text('Lorem ipsum dolor sit amet consectetur adipisicing elit.');
   
-      $('#container').append($paragraph);
-
+      $('#container').append(parrafo);
+  
       $('input[type="radio"]').change(function() {
-        let color = 'black'; 
+        const colorSeleccionado = $('input[name="color"]:checked').val();
   
-        const selectedColor = $('input[name="color"]:checked').val();
-        
-        if (selectedColor) {
-          color = selectedColor;
-        }
-        $paragraph.css('color', color);
+        parrafo.css('color', colorSeleccionado);
       });
     });
   </script>

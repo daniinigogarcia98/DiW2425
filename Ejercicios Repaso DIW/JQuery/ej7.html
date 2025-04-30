@@ -15,22 +15,26 @@
 
     <script>
         $(document).ready(function () {
-            const ipv4Pattern =  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-
-            $('#validarIP').on('click', function () {
-                const inputValue = $('#inputIP').val().trim();
-                if (ipv4Pattern.test(inputValue)) {
-                    $('#resultado')
-                        .text('La dirección IPv4 es válida.')
-                        .removeClass('invalido')
-                        .addClass('valido');
-                } else {
-                    $('#resultado')
-                        .text('La dirección IPv4 no es válida.')
-                        .removeClass('valido')
-                        .addClass('invalido');
-                }
-            });
+          $('#validarIP').on('click', function () {
+            const ip = $('#inputIP').val().trim();
+            const partes = ip.split('.');
+    
+            if (partes.length !== 4) {
+              $('#resultado').text('La IP debe tener 4 números separados por puntos.').removeClass('valido').addClass('invalido');
+              return;
+            }
+    
+            for (let i = 0; i < 4; i++) {
+              const num = parseInt(partes[i], 10);
+    
+              if (isNaN(num) || num < 0 || num > 255) {
+                $('#resultado').text('Cada número debe estar entre 0 y 255.').removeClass('valido').addClass('invalido');
+                return;
+              }
+            }
+    
+            $('#resultado').text('La dirección IPv4 es válida.').removeClass('invalido').addClass('valido');
+          });
         });
-    </script>
+      </script>
 </html>

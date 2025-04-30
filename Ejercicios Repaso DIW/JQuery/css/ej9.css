@@ -1,0 +1,29 @@
+#radio-container {
+    display: flex;
+  }
+    
+  #radio-container>* {
+    flex-grow: 1;
+    margin-block: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .frase {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .frase span {
+    padding: 4px 8px;
+    font-weight: normal;
+    border-radius: 6px;
+    color: #fff;
+  }
+  
+  .frase span:nth-child(1) { background-color: #3498DB; }
+  .frase span:nth-child(2) { background-color: #ca2917; }
+  .frase span:nth-child(3) { background-color: #0c9846; }

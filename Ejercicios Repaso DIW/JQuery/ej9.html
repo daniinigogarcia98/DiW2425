@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/ej9.css">
+</head>
+<body>
+    <div id="radio-container">
+        <div id="grupo1">
+          <p>Grupo 1:</p>
+          <label><input type="radio" name="grupo1" value="inteligente"> Inteligente</label><br>
+          <label><input type="radio" name="grupo1" value="ingenioso"> Ingenioso</label><br>
+          <label><input type="radio" name="grupo1" value="brillante"> Brillante</label>
+        </div>
+        
+        <div id="grupo2">
+          <p>Grupo 2:</p>
+          <label><input type="radio" name="grupo2" value="simpático"> Simpático</label><br>
+          <label><input type="radio" name="grupo2" value="gracioso"> Gracioso</label><br>
+          <label><input type="radio" name="grupo2" value="sociable"> Sociable</label>
+        </div>
+        
+        <div id="grupo3">
+          <p>Grupo 3:</p>
+          <label><input type="radio" name="grupo3" value="atractivo"> Atractivo</label><br>
+          <label><input type="radio" name="grupo3" value="apuesto"> Apuesto</label><br>
+          <label><input type="radio" name="grupo3" value="guapo"> Guapo</label>
+        </div>
+      </div>
+        
+      <p class="frase">Mi profe de DIW es <span>______</span>, <span>______</span> y <span>______</span>.</p>
+</body>
+<script>
+    $(document).ready(function () {
+      $('#radio-container input[type="radio"]').change(function () {
+        const $input = $(this); 
+        const grupo = $input.attr('name').replace('grupo', '');
+        const indice = parseInt(grupo) - 1;
+  
+        const $span = $('.frase span').eq(indice); 
+  
+        const valor = $input.val();
+        const capitalizado = valor.charAt(0).toUpperCase() + valor.slice(1);
+  
+        $span.fadeOut(200, function () {
+          $span.text(capitalizado).fadeIn(200);
+        });
+      });
+      $('#radio-container input[type="radio"]:checked').each(function () {
+        const $input = $(this);
+        const grupo = $input.attr('name').replace('grupo', '');
+        const indice = parseInt(grupo) - 1;
+        const $span = $('.frase span').eq(indice);
+  
+        const valor = $input.val();
+        const capitalizado = valor.charAt(0).toUpperCase() + valor.slice(1);
+        $span.text(capitalizado).show(); 
+      });
+    });
+  </script>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ej12</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/ej12.1.css" />
+  </head>
+  <body>
+    <div class="control-panel">
+      <div id="controlledElement" class="display-element">Lorem ipsum</div>
+
+      <div class="inputs-container">
+        <label for="texto1">Texto 1:</label>
+        <input type="text" id="texto1" value="Lorem ipsum" />
+
+        <label for="texto2">Texto 2:</label>
+        <input type="text" id="texto2" value="Dolor sit amet" />
+      </div>
+
+      <div class="controls">
+        <button id="changeText">Cambiar texto</button>
+        <button id="toggleTitle">Añadir/quitar título</button>
+        <button id="toggleResponsive">Hacer responsive</button>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $("#changeText").click(function () {
+          const texto1 = $("#texto1").val();
+          const texto2 = $("#texto2").val();
+          const TextoActual = $("#controlledElement").text().trim();
+
+          if (TextoActual === texto1) {
+            $("#controlledElement").text(texto2);
+          } else {
+            $("#controlledElement").text(texto1);
+          }
+        });
+        // Añadir o quitar el atributo title del elemento
+        $("#toggleTitle").on("click", function () {
+          const elemento = $("#controlledElement");
+          const tieneAtributoTitle = elemento.is("[title]");
+          // Si tiene el atributo title, lo quitamos; si no, lo añadimos
+          if (tieneAtributoTitle) {
+            elemento.removeAttr("title");
+          } else {
+            const texto = elemento.text().trim();
+            elemento.attr("title", texto);
+          }
+          
+        });
+
+        // Añadir o quitar la clase 'responsive' para hacerlo responsive
+        $("#toggleResponsive").on("click", function () {
+          $("#controlledElement").toggleClass("responsive");
+        });
+      });
+    </script>
+  </body>
+</html>

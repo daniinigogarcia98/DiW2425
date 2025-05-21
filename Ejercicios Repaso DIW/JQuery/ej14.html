@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/ej14.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <title>ej14</title>
+</head>
+<body>
+    <!-- Mensaje para errores y notificaciones -->
+<div id="mensaje" class="alert my-3">&nbsp;</div>
+
+<!-- Panel de búsqueda -->
+<form id="formulario-busqueda" class="row g-3 mt-2 border border-2 p-2 rounded-2 shadow-sm">
+  <div class="col-md-3 mt-0">
+    <label for="originCity" class="form-label">Origen</label>
+    <select id="originCity" name="originCity" class="form-select">
+      <option value="">Todos</option>
+      <!-- Las opciones se cargarán dinámicamente -->
+    </select>
+  </div>
+
+  <div class="col-md-3 mt-0">
+    <label for="country" class="form-label">País</label>
+    <select id="country" name="country" class="form-select">
+      <option value="">Todos</option>
+      <option value="Alemania">Alemania</option>
+      <option value="Austria">Austria</option>
+      <option value="Croacia">Croacia</option>
+      <option value="Francia">Francia</option>
+      <option value="Grecia">Grecia</option>
+      <option value="Italia">Italia</option>
+      <option value="Países Bajos">Países Bajos</option>
+      <option value="Portugal">Portugal</option>
+      <option value="Reino Unido">Reino Unido</option>
+      <option value="República Checa">República Checa</option>
+    </select>
+  </div>
+
+  <div class="col-md-3 mt-0">
+    <label for="category" class="form-label">Categoría</label>
+    <select id="category" name="category" class="form-select">
+      <option value="">Todas</option>
+      <option value="Aventura">Aventura</option>
+      <option value="Cultural">Cultural</option>
+      <option value="Gastronómico">Gastronómico</option>
+      <option value="Playa">Playa</option>
+      <option value="Urbano">Urbano</option>
+    </select>
+  </div>
+
+  <div class="col-md-3 mt-0 d-flex align-items-end">
+    <button type="button" id="btn-buscar" class="btn btn-primary px-5">Buscar</button>
+  </div>
+</form>
+
+<!-- Resultados -->
+<div class="mt-4">
+  <h5 id="contador-resultados">Resultados: 0 viajes encontrados</h5>
+
+  <ol id="lista-resultados" class="list-group list-group-numbered mb-3">
+    <!-- Aquí se cargarán los resultados dinámicamente -->
+  </ol>
+</div>
+<script>
+    $(document).ready(function () {
+
+  let todosLosViajes = [];
+
+  // Cargar ciudades de origen al inicio
+  $.ajax({
+    url: 'ej-13-viajes.json',
+    method: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      todosLosViajes = data;
+
+      const origenes = [...new Set(data.map(v => v.origen))];
+
+      $('#originCity').empty().append('<option value="">Todos</option>');
+      origenes.forEach(origen => {
+        $('#originCity').append(`<option value="${origen}">${origen}</option>`);
+      });
+
+      $('#btn-buscar').prop('disabled', false);
+      mostrarMensaje("Datos cargados correctamente", "success");
+    },
+    error: function () {
+      mostrarMensaje("Error al cargar los datos iniciales", "danger");
+    }
+  });
+
+  // Botón buscar
+  $('#btn-buscar').on('click', function () {
+    const origen = $('#originCity').val();
+    const pais = $('#country').val();
+    const categoria = $('#category').val();
+
+    let resultados = [...todosLosViajes];
+
+    if (origen) {
+      resultados = resultados.filter(v => v.origen === origen);
+    }
+
+    if (pais) {
+      resultados = resultados.filter(v => v.pais === pais);
+    }
+
+    if (categoria) {
+      resultados = resultados.filter(v => v.categoria === categoria);
+    }
+
+    mostrarResultados(resultados);
+  });
+
+  // Mostrar resultados
+  function mostrarResultados(datos) {
+    $('#lista-resultados').empty();
+    $('#contador-resultados').text(`Resultados: ${datos.length} viaje(s) encontrado(s)`);
+
+    if (datos.length === 0) {
+      $('#lista-resultados').append('<li class="list-group-item">No se encontraron resultados.</li>');
+      return;
+    }
+
+    datos.forEach(v => {
+      $('#lista-resultados').append(`
+        <li class="list-group-item">
+          <strong>${v.destino}</strong> (${v.pais}) - 
+          Origen: ${v.origen} | 
+          Categoría: ${v.categoria} | 
+          Precio: €${v.precio}
+        </li>
+      `);
+    });
+  }
+
+  // Mostrar mensajes
+  function mostrarMensaje(mensaje, tipo) {
+    const alertClass = `alert-${tipo}`;
+    $('#mensaje')
+      .removeClass()
+      .addClass(`alert alert-${tipo} my-3`)
+      .text(mensaje)
+      .removeClass('d-none');
+
+    setTimeout(() => {
+      $('#mensaje').fadeOut(300, function () {
+        $(this).addClass('d-none').removeClass(alertClass);
+      });
+    }, 4000);
+  }
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+#listaAlumnos {
+  width: 500px;
+}
+
+li.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.nota {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.nota-sobresaliente {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.nota-notable {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.nota-aprobado {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.nota-suspenso {
+  background-color: #f8d7da;
+  color: #721c24;
+}

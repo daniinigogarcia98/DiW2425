@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ej16</title>
+    
+    <!-- Estilos de Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilo personalizado (si tienes reglas extra) -->
+    <link rel="stylesheet" href="css/ej16.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-4">Lista de Alumnos</h2>
+
+        <button id="btnCargar" class="btn btn-sm btn-success mb-3">Cargar Alumnos</button>
+
+        <ol id="listaAlumnos" class="list-group list-group-numbered">
+            <!-- Aquí se cargarán los alumnos dinámicamente -->
+        </ol>
+    </div>
+
+    <!-- jQuery y Bootstrap JS (opcional, si necesitas funcionalidad JS adicional) -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#btnCargar').on('click', function () {
+                $('#listaAlumnos').empty();
+
+                $.ajax({
+                    url: 'ej-16.json',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $.each(data, function (index, estudiante) {
+                            let nombreCompleto = estudiante.nombre + ' ' + estudiante.apellidos;
+                            let nota = estudiante.notaMedia;
+                            let badgeClass = '';
+                            let calificacionTexto = '';
+
+                            if (nota >= 9) {
+                                badgeClass = 'bg-success';
+                                calificacionTexto = 'Sobresaliente';
+                            } else if (nota >= 7) {
+                                badgeClass = 'bg-primary';
+                                calificacionTexto = 'Notable';
+                            } else if (nota >= 5) {
+                                badgeClass = 'bg-warning text-dark'; // Texto oscuro para fondo claro
+                                calificacionTexto = 'Aprobado';
+                            } else {
+                                badgeClass = 'bg-danger';
+                                calificacionTexto = 'Suspenso';
+                            }
+
+                            let itemHTML = `
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>${nombreCompleto}</span>
+                                    <span class="badge ${badgeClass}">${calificacionTexto} (${nota.toFixed(2)})</span>
+                                </li>
+                            `;
+
+                            $('#listaAlumnos').append(itemHTML);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error al cargar el archivo JSON:", error);
+                        alert("No se pudieron cargar los datos.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

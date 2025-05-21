@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/ej18.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <title>ej18</title>
+</head>
+<body>
+    <div id="resultados-container" class="my-3">
+  <div id="lista-alumnos"></div>
+</div>
+<script>
+$(document).ready(function () {
+  $.ajax({
+    url: 'ej-18.json',
+    type: 'GET',
+    dataType: 'json',
+    success: function (alumnos) {
+      // Creamos la lista principal
+      let $listaAlumnos = $('<ul>').addClass('list-group mt-4');
+
+      // Recorremos cada alumno
+      $.each(alumnos, function (index, alumno) {
+        let $itemAlumno = $('<li>').addClass('list-group-item');
+
+        // Nombre del alumno
+        $itemAlumno.append($('<strong>').text(alumno.nombre));
+
+        // Lista anidada para asignaturas
+        let $listaAsignaturas = $('<ul>').addClass('list-unstyled mt-1 ms-3');
+
+        // Recorremos cada asignatura (que ahora es un objeto)
+        $.each(alumno.asignaturas, function (i, asignaturaObj) {
+          let $itemAsignatura = $('<li>');
+
+          // Nota
+          let $spanNota = $('<span>').text(asignaturaObj.nota);
+          if (asignaturaObj.nota >= 5) {
+            $spanNota.addClass('text-success fw-bold');
+          } else {
+            $spanNota.addClass('text-danger fw-bold');
+          }
+
+          // Nombre de la asignatura y nota
+          $itemAsignatura.append(asignaturaObj.nombre + ': ').append($spanNota);
+
+          // Añadir al DOM
+          $listaAsignaturas.append($itemAsignatura);
+        });
+
+        $itemAlumno.append($listaAsignaturas);
+        $listaAlumnos.append($itemAlumno);
+      });
+
+      $('#lista-alumnos').append($listaAlumnos);
+    },
+    error: function (xhr, status, error) {
+      alert('Error al cargar los datos: ' + error);
+    }
+  });
+});
+
+</script>
+</body>
+</html>

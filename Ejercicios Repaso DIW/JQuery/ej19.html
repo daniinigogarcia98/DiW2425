@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/ej19.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <title>ej19</title>
+</head>
+<body>
+    <!-- Formulario -->
+<form id="formulario-coches" class="mt-3">
+  <div class="mb-3">
+    <!-- Aquí se añadirán dinámicamente los checkboxes -->
+  </div>
+  <button type="submit" class="btn btn-sm btn-success" disabled>Ver coches</button>
+</form>
+
+<div id="resultado" class="mt-4">
+  <!-- Aquí se mostrarán los coches filtrados -->
+</div>
+ <script>
+        $(document).ready(function() {
+            // Realizamos la primera petición AJAX para cargar los datos
+            $.ajax({
+                url: 'ej-19.json', // Ruta al archivo JSON
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Comprobamos si los datos están vacíos
+                    if (data.length === 0) {
+                        $('#resultado').html('<p>Error: No se encontraron coches en el archivo JSON.</p>');
+                        return;
+                    }
+
+                    // Extraemos las marcas únicas
+                    let marcas = [];
+                    $.each(data, function(index, coche) {
+                        if ($.inArray(coche.marca, marcas) === -1) {
+                            marcas.push(coche.marca);
+                        }
+                    });
+
+                    // Generamos dinámicamente los checkboxes para cada marca
+                    let checkboxHTML = '';
+                    $.each(marcas, function(index, marca) {
+                        checkboxHTML += `
+                            <label>
+                                <input type="checkbox" class="marca-checkbox" value="${marca}"> ${marca}
+                            </label><br>
+                        `;
+                    });
+                    $('#formulario-coches .mb-3').html(checkboxHTML);
+
+                    // Habilitamos el botón "Ver coches" cuando se hayan cargado los datos
+                    $('#formulario-coches button').prop('disabled', false);
+                },
+                error: function() {
+                    $('#resultado').html('<p>Error al cargar el archivo JSON.</p>');
+                }
+            });
+
+            // Evento al hacer clic en el botón "Ver coches"
+            $('#formulario-coches').submit(function(e) {
+                e.preventDefault();
+
+                // Obtenemos las marcas seleccionadas
+                let marcasSeleccionadas = [];
+                $('.marca-checkbox:checked').each(function() {
+                    marcasSeleccionadas.push($(this).val());
+                });
+
+                // Comprobamos si se ha seleccionado alguna marca
+                if (marcasSeleccionadas.length === 0) {
+                    $('#resultado').html('<p>Por favor, selecciona al menos una marca para ver los coches.</p>');
+                    return;
+                }
+
+                // Realizamos la segunda petición AJAX para filtrar los coches
+                $.ajax({
+                    url: 'ej-19.json',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        let cochesFiltrados = data.filter(function(coche) {
+                            return marcasSeleccionadas.indexOf(coche.marca) !== -1;
+                        });
+
+                        // Comprobamos si se encontraron coches filtrados
+                        if (cochesFiltrados.length === 0) {
+                            $('#resultado').html('<p>No se encontraron coches con las marcas seleccionadas.</p>');
+                        } else {
+                            // Mostramos los coches filtrados
+                            let resultadoHTML = '<ul>';
+                            $.each(cochesFiltrados, function(index, coche) {
+                                resultadoHTML += `
+                                    <li><strong>Marca:</strong> ${coche.marca} | <strong>Modelo:</strong> ${coche.modelo} | <strong>Precio:</strong> ${coche.precio}</li>
+                                `;
+                            });
+                            resultadoHTML += '</ul>';
+                            $('#resultado').html(resultadoHTML);
+                        }
+                    },
+                    error: function() {
+                        $('#resultado').html('<p>Error al filtrar los coches.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

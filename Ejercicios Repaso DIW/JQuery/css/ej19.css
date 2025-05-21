@@ -1,0 +1,26 @@
+/* Estilos para formulario de coches */
+.form-check {
+  margin-bottom: 8px;
+}
+
+.marca-coche {
+  font-weight: 500;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.modelo-coche {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+#resultado {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+#resultado p {
+  margin: 0;
+}

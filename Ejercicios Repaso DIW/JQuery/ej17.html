@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/ej17.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <title>ej17</title>
+</head>
+<body>
+    <div class="row mt-4">
+  <div class="col-md-6 mb-3">
+    <div class="card shadow-sm">
+      <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Aprobados</h5>
+      </div>
+      <div class="card-body">
+        <ul id="lista-aprobados" class="list-group list-group-flush">
+          <!-- Aquí se mostrarán los alumnos aprobados -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3">
+    <div class="card shadow-sm">
+      <div class="card-header bg-danger text-white">
+        <h5 class="mb-0">Suspendidos</h5>
+      </div>
+      <div class="card-body">
+        <ul id="lista-suspendidos" class="list-group list-group-flush">
+          <!-- Aquí se mostrarán los alumnos suspendidos -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: 'ej-16.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#lista-aprobados').empty();
+            $('#lista-suspendidos').empty();
+
+            data.forEach(function(alumno) {
+                const nombreCompleto = alumno.nombre + ' ' + alumno.apellidos;
+                const nota = alumno.notaMedia.toFixed(2);
+
+                const $notaSpan = $('<span>')
+                    .addClass('nota')
+                    .addClass(alumno.notaMedia >= 5 ? 'bg-success' : 'bg-danger')
+                    .addClass('text-white px-2 rounded d-inline-block')
+                    .text(nota);
+
+                const $listItem = $('<li>')
+                    .addClass('list-group-item')
+                    .html(`${nombreCompleto} - Nota: `)
+                    .append($notaSpan);
+
+                if (alumno.notaMedia >= 5) {
+                    $('#lista-aprobados').append($listItem);
+                } else {
+                    $('#lista-suspendidos').append($listItem);
+                }
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Error al cargar el archivo JSON:", error);
+            alert("No se pudieron cargar los datos.");
+        }
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscador de Productos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap @5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .producto-card img {
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body class="container py-4">
+
+  <!-- Mensaje -->
+  <div id="mensaje" class="alert my-3 d-none"></div>
+
+  <!-- Formulario -->
+  <form id="formulario-busqueda" class="row g-3 mt-2 border border-2 p-3 rounded-2 shadow-sm">
+    <div class="col-md-6">
+      <label for="precioMaximo" class="form-label">Precio máximo: <span id="valorPrecio">0€</span></label>
+      <input type="range" class="form-range" id="precioMaximo" min="0" max="50000" step="100" value="50000">
+    </div>
+    <div class="col-md-4">
+      <label for="descuentoMinimo" class="form-label">Descuento mínimo</label>
+      <select id="descuentoMinimo" class="form-select">
+        <option value="0" selected>Sin mínimo</option>
+        <option value="5">5% o más</option>
+        <option value="10">10% o más</option>
+        <option value="15">15% o más</option>
+      </select>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button type="button" id="btn-buscar" class="btn btn-primary w-100">Buscar</button>
+    </div>
+  </form>
+
+  <!-- Resultados -->
+  <div class="mt-4">
+    <h5 id="contador-resultados">Utiliza los filtros y pulsa "Buscar"</h5>
+    <div id="resultado-productos" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mt-2"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+  const $sliderPrecio = $("#precioMaximo");
+  const $spanPrecio = $("#valorPrecio");
+  const $selectDescuento = $("#descuentoMinimo");
+  const $btnBuscar = $("#btn-buscar");
+  const $resultadoProductos = $("#resultado-productos");
+  const $mensajeDiv = $("#mensaje");
+  const $contadorResultados = $("#contador-resultados");
+
+  // Mostrar valor inicial del slider
+  $spanPrecio.text($sliderPrecio.val() + "€");
+  $sliderPrecio.on("input", function () {
+    $spanPrecio.text($(this).val() + "€");
+  });
+
+  $btnBuscar.on("click", function () {
+    $resultadoProductos.empty();
+    $contadorResultados.text("Cargando productos...");
+    $mensajeDiv.hide();
+
+    $.ajax({
+      url: "ej-15.json", 
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        filtrarYMostrar(data.products);
+      },
+      error: function () {
+        mostrarMensaje("danger", "Error al cargar los productos.");
+        $contadorResultados.text("No se pudieron cargar los productos.");
+      }
+    });
+  });
+
+  function filtrarYMostrar(productos) {
+    const precioMax = parseFloat($sliderPrecio.val());
+    const descuentoMin = parseFloat($selectDescuento.val());
+
+    const filtrados = productos.filter(p => {
+      return (
+        (p.price <= precioMax || precioMax === 50000) &&
+        (p.discountPercentage >= descuentoMin || descuentoMin === 0)
+      );
+    });
+
+    if (filtrados.length === 0) {
+      $contadorResultados.text("No se encontraron productos con esos criterios.");
+      return;
+    }
+
+    $contadorResultados.text(`Mostrando ${filtrados.length} producto(s):`);
+
+    $.each(filtrados, function (i, producto) {
+      const cardHTML = `
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <img src="${producto.thumbnail}" class="card-img-top" alt="${producto.title}">
+            <div class="card-body d-flex flex-column">
+              <h6 class="card-title">${producto.title}</h6>
+              <p class="mb-1">Precio: <strong>${producto.price.toFixed(2)}€</strong></p>
+              <p class="mb-1 text-success">Descuento: ${producto.discountPercentage}%</p>
+            </div>
+          </div>
+        </div>
+      `;
+      $resultadoProductos.append(cardHTML);
+    });
+  }
+
+  function mostrarMensaje(tipo, texto) {
+    $mensajeDiv.removeClass().addClass("alert alert-" + tipo + " my-3").text(texto).show();
+    setTimeout(() => $mensajeDiv.fadeOut(400), 3000);
+  }
+});
+  </script>
+</body>
+</html>

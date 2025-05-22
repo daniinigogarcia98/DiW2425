@@ -55,7 +55,7 @@ $(document).ready(function() {
             marcas.forEach(function(marca) {
                 cajaCheckbox += `
                     <label>
-                        <input type="checkbox" class="marca-checkbox" value="${marca}"> ${marca}
+                        <input type="checkbox" class="marca-checkbox" value="` + marca + `"> ` + marca + `
                     </label><br>
                 `;
             });

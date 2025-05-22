@@ -26,5 +26,8 @@
 }
 #resultado ul {
     list-style-type: none;
-    padding-left: 0; /* Elimina el espacio adicional de la izquierda */
+    padding-left: 0; 
+}
+.error {
+  color: red;
 }

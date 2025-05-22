@@ -8,9 +8,16 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <title>ej19</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <!-- Formulario -->
+<div class="container">
+    <div class="d-flex row">
+<!-- Formulario -->
 <form id="formulario-coches" class="mt-3">
   <div class="mb-3">
     <!-- Aquí se añadirán dinámicamente los checkboxes -->
@@ -21,100 +28,92 @@
 <div id="resultado" class="mt-4">
   <!-- Aquí se mostrarán los coches filtrados -->
 </div>
+    </div>
+</div>
 <script>
-    $(document).ready(function() {
-        // Realizamos la primera petición AJAX para cargar los datos
-        $.ajax({
-            url: 'ej-19.json', // Ruta al archivo JSON
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                // Comprobamos si los datos están vacíos
-                if (data.length === 0) {
-                    $('#resultado').html('<p>Error: No se encontraron coches en el archivo JSON.</p>');
-                    return;
-                }
+$(document).ready(function() {
 
-                // Extraemos las marcas únicas
-                let marcas = [];
-                $.each(data, function(index, coche) {
-                    if ($.inArray(coche.marca, marcas) === -1) {
-                        marcas.push(coche.marca);
-                    }
-                });
-
-                // Generamos dinámicamente los checkboxes para cada marca
-                let checkboxHTML = '';
-                $.each(marcas, function(index, marca) {
-                    checkboxHTML += `
-                        <label>
-                            <input type="checkbox" class="marca-checkbox" value="${marca}"> ${marca}
-                        </label><br>
-                    `;
-                });
-                $('#formulario-coches .mb-3').html(checkboxHTML);
-
-                // Habilitamos el botón "Ver coches" cuando se hayan cargado los datos
-                $('#formulario-coches button').prop('disabled', false);
-            },
-            error: function() {
-                $('#resultado').html('<p>Error al cargar el archivo JSON.</p>');
-            }
-        });
-
-        // Evento al hacer clic en el botón "Ver coches"
-        $('#formulario-coches').submit(function(e) {
-            e.preventDefault();
-
-            // Obtenemos las marcas seleccionadas
-            let marcasSeleccionadas = [];
-            $('.marca-checkbox:checked').each(function() {
-                marcasSeleccionadas.push($(this).val());
-            });
-
-            // Comprobamos si se ha seleccionado alguna marca
-            if (marcasSeleccionadas.length === 0) {
-                $('#resultado').html('<p>Por favor, selecciona al menos una marca para ver los coches.</p>');
+    $.ajax({
+        url: 'ej-19.json',
+        //url: 'ej-19-vacio.json',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if (data.length === 0) {
+                $('#resultado').html('<p class="error">Error al cargar datos.</p>');
                 return;
             }
 
-            // Realizamos la segunda petición AJAX para filtrar los coches
-            $.ajax({
-                url: 'ej-19.json',
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    let cochesFiltrados = data.filter(function(coche) {
-                        return marcasSeleccionadas.indexOf(coche.marca) !== -1;
-                    });
-
-                    // Comprobamos si se encontraron coches filtrados
-                    if (cochesFiltrados.length === 0) {
-                        $('#resultado').html('<p>No se encontraron coches con las marcas seleccionadas.</p>');
-                    } else {
-                        // Mostramos los coches filtrados con la cilindrada
-                        let resultadoHTML = '<ul>';
-                        $.each(cochesFiltrados, function(index, coche) {
-                            resultadoHTML += `
-                                <li>
-                                    <strong>Marca:</strong> ${coche.marca} |
-                                    <strong>Modelo:</strong> ${coche.modelo} |
-                                    <strong>Cilindrada:</strong> ${coche.cilindrada} CC |
-                                    <strong>Precio:</strong> $${coche.precio.toLocaleString()}
-                                </li>
-                            `;
-                        });
-                        resultadoHTML += '</ul>';
-                        $('#resultado').html(resultadoHTML);
-                    }
-                },
-                error: function() {
-                    $('#resultado').html('<p>Error al filtrar los coches.</p>');
+            let marcas = [];
+            $.each(data, function(index, coche) {
+                if (marcas.includes(coche.marca)!== true) {
+                    marcas.push(coche.marca);
                 }
             });
+
+            let cajaCheckbox = '';
+            $.each(marcas, function(index, marca) {
+                cajaCheckbox += `
+                    <label>
+                        <input type="checkbox" class="marca-checkbox" value="` + marca + `"> ` + marca + `
+                    </label><br>
+                `;
+            });
+            $('#formulario-coches .mb-3').html(cajaCheckbox);
+
+            $('#formulario-coches button').prop('disabled', false);
+        },
+        error: function() {
+            $('#resultado').html('<p class="error">Error al cargar el archivo JSON.</p>');
+        }
+    });
+
+    $('#formulario-coches').submit(function(e) {
+        e.preventDefault();
+        let marcasSeleccionadas = [];
+        $('.marca-checkbox:checked').each(function() {
+            marcasSeleccionadas.push($(this).val());
+        });
+
+        if (marcasSeleccionadas.length === 0) {
+            $('#resultado').html('<p class="error">Por favor, selecciona al menos una marca.</p>');
+            return;
+        }
+
+        $.ajax({
+            url: 'ej-19.json',
+            //url: 'ej-19-vacio.json',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                let cochesFiltrados = data.filter(function(coche) {
+                    return marcasSeleccionadas.includes(coche.marca);
+                });
+
+                if (cochesFiltrados.length === 0) {
+                    $('#resultado').html('<p class="error">No se encontraron coches con las marcas seleccionadas.</p>');
+                } else {
+                    let resultado = '<ul>';
+                    $.each(cochesFiltrados, function(index, coche) {
+                        resultado += `
+                            <li>
+                                <strong>Marca:</strong> ` + coche.marca + ` 
+                                <strong>Modelo:</strong> ` + coche.modelo + ` 
+                                <strong>Cilindrada:</strong> ` + coche.cilindrada + ` CC 
+                                <strong>Precio:</strong> ` + coche.precio.toLocaleString() + `
+                            </li>
+                        `;
+                    });
+                    resultado += '</ul>';
+                    $('#resultado').html(resultado);
+                }
+            },
+            error: function() {
+                $('#resultado').html('<p class="error">Error al cargar el archivo JSON.</p>');
+            }
         });
     });
+});
 </script>
-
 </body>
 </html>

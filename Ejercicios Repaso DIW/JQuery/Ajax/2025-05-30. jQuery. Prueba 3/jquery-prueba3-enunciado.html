@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2025-05-30. jQuery. Prueba 3</title>
+  <script src="jquery-3.7.1.min.js"></script>
+  <style>
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .flex-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    form {
+      background-color: rgb(242, 240, 255);
+      border: 1px solid rgb(190, 185, 230);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      min-width: 300px;
+      height: fit-content;
+      flex: 1;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 5px;
+      margin-top: 3px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    #mensaje {
+      flex: 1;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #mensaje p {
+      margin: 0;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mensaje-exito {
+      background-color: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      color: #1b5e20;
+      padding: 8px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>2025-05-30. jQuery. Prueba 3</h1>
+
+    <h3>Dado el siguiente formulario de reserva, implementa con jQuery los siguientes comportamientos:</h3>
+
+    <p><strong>1.</strong> Cuando se escriba en el campo "Nombre" o "Email", valida <u>en tiempo real</u> que ambos campos tengan al menos 3 caracteres. Cuando ambos campos tengan al menos 3 caracteres habilita el botón del formulario, que está deshabilitado por defecto. Si en algún momento vuelven a tener menos de 3, se deshabilitará de nuevo. <strong>[2,5 puntos]</strong></p>
+
+    <p><strong>2.</strong> Cada vez que se seleccione un tipo de habitación (radiobutton), muestra en el div con id="mensaje" <u>un párrafo</u> con texto indicando la habitación elegida, añadiendo la clase "mensaje-exito". El mensaje debe reemplazar cualquier mensaje anterior. Por ejemplo: "Has seleccionado: habitación doble". <strong>[2,5 puntos]</strong></p>
+
+    <p><strong>3.</strong> Cuando se seleccione algún checkbox de "Servicios adicionales", calcula el precio total sumando el valor de cada servicio seleccionado usando el atributo <code>data-precio</code> y muéstralo en el span "total-servicios" dentro del formulario. Si se desmarca alguna opción, actualiza el total. <strong>[2,5 puntos]</strong></p>
+
+    <p><strong>4.</strong> Implementa la funcionalidad para que cuando se haga doble clic en cualquier párrafo dentro del div "mensaje", este se elimine del DOM. <strong>[1 punto]</strong></p>
+
+    <p><strong>5.</strong> Implementa la funcionalidad para que el botón esté deshabilitado por defecto y ningún checkbox esté marcado cuando se carga la página. <strong>[1,5 puntos]</strong></p>
+
+    <hr>
+
+    <div class="flex-container">
+      <form id="formulario">
+        <div>
+          <label for="nombre">Nombre: *</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div style="margin-top: 10px;">
+          <label for="email">Email: *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <p>Tipo de habitación: *</p>
+          <input type="radio" id="individual" name="habitacion" value="individual" data-precio="50">
+          <label for="individual">Individual (50€/noche)</label><br>
+          <input type="radio" id="doble" name="habitacion" value="doble" data-precio="80">
+          <label for="doble">Doble (80€/noche)</label><br>
+          <input type="radio" id="suite" name="habitacion" value="suite" data-precio="120">
+          <label for="suite">Suite (120€/noche)</label>
+        </div>
+        <div style="margin-top: 15px;">
+          <p>Servicios adicionales:</p>
+          <input type="checkbox" id="desayuno" name="servicios" value="desayuno" data-precio="15">
+          <label for="desayuno">Desayuno buffet (15€)</label><br>
+          <input type="checkbox" id="spa" name="servicios" value="spa" data-precio="30">
+          <label for="spa">Acceso al spa (30€)</label><br>
+          <input type="checkbox" id="parking" name="servicios" value="parking" data-precio="10">
+          <label for="parking">Parking (10€)</label><br>
+          <input type="checkbox" id="wifi" name="servicios" value="wifi" data-precio="5">
+          <label for="wifi">WiFi premium (5€)</label><br>
+          <div style="margin-top: 10px; font-weight: bold;">
+            Total servicios adicionales: <span id="total-servicios">0</span>€
+          </div>
+        </div>
+        <div style="margin-top: 15px;">
+          <button type="submit" id="enviar">Enviar reserva</button>
+        </div>
+      </form>
+
+      <div id="mensaje">
+        <!-- Los mensajes se añadirán aquí dinámicamente -->
+      </div>
+    </div>
+
+  </div>
+ <script>
+  $(document).ready(function () {
+    // 5. Al cargar la página: deshabilitar botón y desmarcar checkboxes
+    $('#enviar').prop('disabled', true);
+    $('input[type="checkbox"]').prop('checked', false);
+
+    // 1. Validación en tiempo real de Nombre y Email
+    function validarCampos() {
+      var nombre = $('#nombre').val().trim();
+      var email = $('#email').val().trim();
+
+      if (nombre.length >= 3 && email.length >= 3) {
+        $('#enviar').prop('disabled', false);
+      } else {
+        $('#enviar').prop('disabled', true);
+      }
+    }
+
+    $('#nombre, #email').on('input', function () {
+      validarCampos();
+    });
+
+    // 2. Mostrar mensaje al seleccionar tipo de habitación
+    $('input[name="habitacion"]').on('change', function () {
+      var tipo = $(this).val();
+      var mensaje = $('<p class="mensaje-exito">Has seleccionado: habitación ' + tipo + '</p>');
+      $('#mensaje').html(mensaje);
+    });
+
+    // 3. Calcular total de servicios adicionales
+    $('input[name="servicios"]').on('change', function () {
+      var total = 0;
+      $('input[name="servicios"]:checked').each(function () {
+        total += parseFloat($(this).attr('data-precio'));
+      });
+      $('#total-servicios').text(total);
+    });
+
+    // 4. Eliminar mensaje al hacer doble clic en el párrafo dentro de #mensaje
+    $('#mensaje').on('dblclick', 'p', function () {
+      $(this).remove();
+    });
+  });
+</script>
+
+
+</body>
+
+</html>

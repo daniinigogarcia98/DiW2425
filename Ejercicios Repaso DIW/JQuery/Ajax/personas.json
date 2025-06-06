@@ -1,0 +1,44 @@
+[
+    {
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "edad": 25,
+        "sexo": "Masculino"
+    },
+    {
+        "nombre": "Maria",
+        "apellido": "Perez",
+        "edad": 25,
+        "sexo": "Femenino"
+    },
+    {
+        "nombre": "Pedro",
+        "apellido": "Perez",
+        "edad": 25,
+        "sexo": "Masculino"
+    },
+    {
+        "nombre": "Julia",
+        "apellido": "Garcia",
+        "edad": 25,
+        "sexo": "Femenino"
+    },
+    {
+        "nombre": "Carlos",
+        "apellido": "Perez",
+        "edad": 26,
+        "sexo": "Masculino"
+    },
+    {
+        "nombre": "Jose",
+        "apellido": "Perez",
+        "edad": 26,
+        "sexo": "Masculino"
+    },
+    {
+        "nombre": "Antonio",
+        "apellido": "Martinez",
+        "edad": 25,
+        "sexo": "Masculino"
+    }
+]

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <title>Tabla Personas</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Tabla Personas</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="btn-cargar" class="btn btn-primary">Cargar json</button>
+                <table class="table table-striped" id="personas">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                            <th>Sexo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="personas">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- cargar personas mediante ajax  usando jquery  y un boton a partir de un archivo json-->
+    <script>
+        $(document).ready(function(){
+            //ocultamos la tabla para luego mostrarla cuando pulsemos el boton
+            //usamos el metodo hide() de jquery para ocultar la tabla
+            $("#personas").hide();
+            //asociamos el evento click al boton cargar
+            $("#btn-cargar").click(function(){
+                //acemos la solicitud ajax
+                $.ajax({
+                    //solicitamos los datos atraves de get
+                    type: "GET",
+                    //la url de la cual obtendremos los datos
+                    url: "personas.json",
+                    //el tipo de datos que nos devuelve el servidor
+                    dataType: "json",
+                    //ejecutamos el metodo success cuando el servidor responda
+                    success: function(data){
+                        //obtenemos el objeto json
+                        let personas = data;
+                        //evitar repeticion con empty
+                        $("#personas tbody").empty();
+                        //iteramos sobre el objeto json
+                        personas.forEach(function(persona){
+                           let fila =$("<tr></tr>");
+                            //agregamos los datos de la persona en el objeto fila
+                            fila.append("<td>"+persona.nombre+"</td>");
+                            fila.append("<td>"+persona.apellido+"</td>");
+                            fila.append("<td>"+persona.edad+"</td>");
+                            fila.append("<td>"+persona.sexo+"</td>");
+                            //agregamos el objeto fila al elemento personas
+                            $("#personas tbody").append(fila);
+                            //mostramos la tabla
+                            $("#personas").show();
+                        });
+                    }
+
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>
